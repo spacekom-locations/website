@@ -1,4 +1,6 @@
-# control-panel
+# Website
+
+### Wayn location service website
 
 ## Project setup
 ```
