@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <main-app-bar />
+    <main-app-bar v-if="$route.name.toUpperCase() != 'AUTHENTICATE'"/>
     <v-main>
       <router-view></router-view>
     </v-main>

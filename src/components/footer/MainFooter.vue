@@ -77,7 +77,8 @@
               class="mt-6 pt-4 headline grey--text text-center"
               style="border-top: 1px solid #ccc"
             >
-              SpaceKom All rights reserved . Made with ❤️ in Dubai, UA
+              <span class="blue--text"> Space</span
+            ><span class="orange--text">Kom </span> All rights reserved . Made with ❤️ in Dubai, UA
             </div>
           </v-col>
         </v-row>

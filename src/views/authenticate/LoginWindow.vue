@@ -30,7 +30,7 @@
               <span class="blue--text">Forgot password</span>
             </v-card-actions>
 
-            <v-btn color="blue" dark block x-large>Log in</v-btn>
+            <v-btn color="blue" depressed dark block x-large>Log in</v-btn>
 
             <div class="my-6 py-6"></div>
           </v-col>
@@ -51,7 +51,7 @@
           <p class="my-6 py-6"></p>
 
         <div class="text-center">
-          <v-btn x-large outlined dark @click="$emit('signup')">SIGN UP</v-btn>
+          <v-btn width="250" x-large outlined dark @click="$emit('signup')">SIGN UP</v-btn>
         </div>
       </div>
     </v-col>

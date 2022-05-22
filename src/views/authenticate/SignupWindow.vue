@@ -13,7 +13,7 @@
           <p class="my-6 py-6"></p>
         </v-card-text>
         <div class="text-center">
-          <v-btn x-large outlined dark @click="$emit('login')">Log in</v-btn>
+          <v-btn width="250" x-large outlined dark @click="$emit('login')">Log in</v-btn>
         </div>
       </div>
     </v-col>
@@ -62,7 +62,7 @@
               </v-col>
               <v-col cols="12" sm="6">
                 <v-text-field
-                  label="Password"
+                  label="Retype Password"
                   outlined
                   color="blue"
                   autocomplete="false"
@@ -76,7 +76,7 @@
               <span class="caption blue--text">Terms &Conditions</span>
             </h3>
             <div class="my-6"></div>
-            <v-btn color="blue" dark block x-large>Sign up</v-btn>
+            <v-btn color="blue" depressed dark block x-large>Sign up</v-btn>
 
         <p class="my-6"></p>
             
