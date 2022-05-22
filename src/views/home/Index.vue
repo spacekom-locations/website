@@ -26,5 +26,4 @@ export default {
     PopularLocations,
   },
 };
-</script>,
-    PopularLocations
+</script>

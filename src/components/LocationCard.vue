@@ -34,7 +34,7 @@
         ></v-rating>
         <span class="mx-2">(1200)</span>
         <v-spacer></v-spacer>
-        <v-chip color="orange">SUPERHOST</v-chip>
+        <v-chip color="orange" dark>SUPERHOST</v-chip>
       </v-card-actions>
     </v-card>
   </v-hover>

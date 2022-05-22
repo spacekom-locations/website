@@ -40,7 +40,7 @@
                 <div style="padding-top: 200px"></div>
                 <v-btn x-large align-end justify-start outlined color="white">
                   <span>See more</span>
-                  <spna class="mx-2"></spna>
+                  <span class="mx-2"></span>
                   <v-icon color="white">mdi-arrow-right</v-icon>
                 </v-btn>
               </v-img>
