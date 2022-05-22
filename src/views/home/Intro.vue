@@ -3,7 +3,7 @@
     <v-container style="height: auto; min-height: 90vh; position: relative">
       <v-row
         style="
-          width: 50%;
+          width: 90%;
           position: absolute;
           top: 50%;
           left: 50%;
@@ -11,13 +11,13 @@
         "
       >
         <v-col>
-          <v-card class="rounded-lg pa-6" outlined color="#ffffffCC">
+          <v-card class="rounded-lg pa-6" outlined color="#ffffffaa">
             <v-card-title class="headline">
               Find a locations you are looking for
             </v-card-title>
             <v-card-text class="mt-3">
               <v-row>
-                <v-col cols="12" lg="6">
+                <v-col cols="12" lg="4" md="6" sm="12">
                   <v-autocomplete
                     v-model="eventCategory"
                     :items="['Production', 'Event', 'Meeting']"
@@ -26,7 +26,7 @@
                     clearable
                   ></v-autocomplete>
                 </v-col>
-                <v-col cols="12" lg="6">
+                <v-col cols="12" lg="5" md="6" sm="12">
                   <v-autocomplete
                     v-model="place"
                     :items="[
@@ -58,7 +58,7 @@
                   ></v-autocomplete>
                 </v-col>
                 <v-col>
-                  <v-btn x-large color="info darken-1" block>
+                  <v-btn x-large dark depressed color="info darken-1" block>
                     <v-icon>mdi-magnify</v-icon>
                     <span class="mx-1"></span>
                     <span>Find Location</span>
