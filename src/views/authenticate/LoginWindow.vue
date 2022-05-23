@@ -64,6 +64,6 @@ export default {};
 
 <style scoped>
 .v-application .rounded-bl-xl {
-  border-top-left-radius: 350px !important;
+  border-top-left-radius: 250px !important;
 }
 </style>

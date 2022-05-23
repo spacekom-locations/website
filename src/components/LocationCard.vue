@@ -6,6 +6,8 @@
       :elevation="hover ? 20 : 0"
       :class="{ 'on-hover': hover }"
       class="ma-4 rounded-lg mb-6"
+      route
+      :to="{ name: 'LocationView', params: { id: 'some-where' } }"
     >
       <v-img
         src="https://static.giggster.com/images/location/a458b934-7b59-4deb-9901-e2af58ce6cf9/d832cd1e-f634-4f68-80f9-328717c107a9/mid_x2.jpeg"
@@ -27,7 +29,7 @@
           hover
           length="5"
           size="20"
-          value="4.7"
+          :value="4"
           dense
           background-color="grey"
           x-small
