@@ -25,3 +25,10 @@ jobs:
         git add -f dist/
         git commit -m "Build front-end assets"
         git push -f origin deploy
+    - name: Deploy to production
+      uses: appleboy/ssh-action@master
+      with:
+        username: ubuntu
+        host: 43.204.133.206
+        KEY: ${{ secrets.SSH_KEY }}
+        script: 'cd /var/www/html/organizations/spacekom/uat.spacekom.com && sudo sh ./server_deploy.sh'
