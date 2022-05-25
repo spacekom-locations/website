@@ -10,23 +10,25 @@
           transform: translate(-50%, -60%);
         "
       >
-        <v-col>
+        <v-col cols="12" lg="4">
           <v-card class="rounded-lg pa-6" outlined color="#ffffffaa">
             <v-card-title class="headline">
               Find a locations you are looking for
             </v-card-title>
             <v-card-text class="mt-3">
               <v-row>
-                <v-col cols="12" lg="4" md="6" sm="12">
+                <v-col cols="12" lg="12" md="6" sm="12">
+                  <p class="headline"> What's in your mind </p>
                   <v-autocomplete
                     v-model="eventCategory"
                     :items="['Production', 'Event', 'Meeting']"
                     outlined
-                    label="What's in your mind"
+                    label="select an activity"
                     clearable
                   ></v-autocomplete>
                 </v-col>
-                <v-col cols="12" lg="5" md="6" sm="12">
+                <v-col cols="12" lg="12" md="6" sm="12">
+                  <p class="headline"> Where ? </p>
                   <v-autocomplete
                     v-model="place"
                     :items="[
@@ -54,7 +56,7 @@
                     ]"
                     outlined
                     clearable
-                    label="Where ?"
+                    label="Select a place"
                   ></v-autocomplete>
                 </v-col>
                 <v-col>
