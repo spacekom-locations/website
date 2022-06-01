@@ -1,0 +1,102 @@
+{
+  "direction": "ltr",
+  "name": "English",
+  "components": {},
+  "pages": {
+    "authenticate": {
+      "signup": {
+        "goto_login_card": {
+          "title": "Already Signed up?",
+          "description": "Log in to your account so you can continue <br /> building and editing your onboarding flows",
+          "login_button": "Login"
+        },
+        "title": "Sign Up for an Account",
+        "description": "Let's get you all set up so you can start creating your <br /> first onboarding experience",
+        "signup_button": "signup",
+        "terms_conditions": "By singing up, you accept <span class='caption blue--text'>Terms & Conditions</span>",
+        "fields": {
+          "name": {
+            "label": "Name",
+            "placeholder": "Enter your full name first name + last name",
+            "errors": {
+              "empty": "name field is empty"
+            }
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "Enter your email",
+            "errors": {
+              "empty": "email field is empty"
+            }
+          },
+          "password": {
+            "label": "Password",
+            "placeholder": "Enter new password",
+            "errors": {
+              "empty": "password field is empty"
+            }
+          },
+          "password_confirmation": {
+            "label": "Password Confirmation",
+            "placeholder": "Enter password again",
+            "errors": {
+              "empty": "password confirmation field is empty",
+              "not_matched": "password confirmation does not match password"
+            }
+          }
+        }
+      },
+      "login": {
+        "goto_signup_card": {
+          "title": "Don't Have an Account Yet?",
+          "description": "Let's get you all set up so you can start creating your your first <br /> onboarding experience",
+          "singup_button": "Sign Up"
+        },
+        "title": "Login in to Your Account",
+        "description": "Log in to your account so you can continue building <br />and editing your onboarding flows",
+        "forgot_password": "Forgot Password",
+        "login_button": "Login",
+        "terms_conditions": "By singing up, you accept <span class='caption blue--text'>Terms & Conditions</span>",
+        "fields": {
+          "email": {
+            "label": "Email",
+            "placeholder": "Enter your email",
+            "errors": {
+              "empty": "email field is empty"
+            }
+          },
+          "password": {
+            "label": "Password",
+            "placeholder": "Enter your password",
+            "errors": {
+              "empty": "password field is empty"
+            }
+          }
+        }
+      }
+    },
+    "logout": {
+      "logout": "Logout",
+      "loading": "logging out",
+      "unknown_error": "something went wrong"
+    }
+  },
+  "models": {
+    "user": {
+      "categories": {
+        "PRODUCER_PRODUCTION_MANAGER": "Producer or Production Manager",
+        "BRAND_AFFILIATED": "Brand Affiliated",
+        "INDEPENDENT_CONTENT_CREATOR": "Independent Content Creator",
+        "STUDENT": "Student",
+        "EVENT_PLANER": "Event Planer",
+        "PHOTOGRAPHER": "Photographer",
+        "VIDEOGRAPHER": "Videographer",
+        "DIRECTOR": "Director",
+        "WEDDING_PLANNER": "Wedding Planner",
+        "ARTIST": "Artist",
+        "BRIDE": "Bride",
+        "BUSINESS_OWNER_AFFILIATED": "Business Owner Affiliated"
+      }
+    }
+  }
+}

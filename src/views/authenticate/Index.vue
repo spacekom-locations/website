@@ -1,15 +1,9 @@
 <template>
-  <v-container>
+  <v-container class="mt-12">
     <v-row align="center" justify="center">
       <v-col cols="12" sm="10" class="pt-12">
-        <router-link :to="{ name: 'Home' }" style="text-decoration: none; text-align: center;">
-          <div class="center-text mx-auto">
-            <span class="blue--text display-1 font-weight-bold"> Space</span
-            ><span class="orange--text display-1 font-weight-black">Kom </span>
-          </div>
-        </router-link>
         <v-card
-          class="elevation-0 mt-8"
+          class="elevation-0"
           style="border-color: #2196f3"
           outlined
           flat

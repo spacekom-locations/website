@@ -1,0 +1,10 @@
+export const responseCodes = {
+    HTTP_UNAUTHORIZED: 401,
+    HTTP_UNPROCESSABLE_ENTITY: 422,
+    HTTP_FORBIDDEN: 403,
+    HTTP_NOT_FOUND: 404,
+    HTTP_TIME_OUT: 408,
+    HTTP_TOO_MANY_REQUESTS: 429,
+    HTTP_SERVER_ERROR: 500,
+};
+export default responseCodes;

@@ -1,36 +1,38 @@
 <template>
   <div class="intro">
-    <v-container style="height: auto; min-height: 90vh; position: relative">
+    <v-container style="height: auto; min-height: 98vh; position: relative">
       <v-row
         style="
           width: 90%;
           position: absolute;
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -60%);
+          transform: translate(-50%, -50%);
         "
       >
-        <v-col cols="12" lg="4">
+        <v-col cols="12" lg="5">
           <v-card class="rounded-lg pa-6" outlined color="#ffffffaa">
             <v-card-title class="headline">
               Find a locations you are looking for
             </v-card-title>
             <v-card-text class="mt-3">
               <v-row>
-                <v-col cols="12" lg="12" md="6" sm="12">
-                  <p class="headline"> What's in your mind </p>
+                <v-col cols="12" lg="12" md="6" sm="12" class="py-2">
+                  <p class="subtitle-2"> What's in your mind </p>
                   <v-autocomplete
                     v-model="eventCategory"
                     :items="['Production', 'Event', 'Meeting']"
                     outlined
                     label="select an activity"
                     clearable
+                    hide-details
                   ></v-autocomplete>
                 </v-col>
-                <v-col cols="12" lg="12" md="6" sm="12">
-                  <p class="headline"> Where ? </p>
+                <v-col cols="12" lg="12" md="6" sm="12" class="py-2">
+                  <p class="subtitle-2"> Where ? </p>
                   <v-autocomplete
                     v-model="place"
+                    hide-details
                     :items="[
                       'Dubai, UA',
                       'Abu Dhabi, UA',

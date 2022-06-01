@@ -63,8 +63,4 @@ export default {
 </script>
 
 <style>
-.sticky-top {
-  position: sticky;
-  top: 90px;
-}
 </style>
