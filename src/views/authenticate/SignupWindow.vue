@@ -36,7 +36,7 @@
         <p class="my-6"></p>
 
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" @keypress.enter="signup">
+          <v-col cols="12" sm="8" @keyup.enter="signup">
             <v-row>
               <v-col cols="12">
                 <v-text-field

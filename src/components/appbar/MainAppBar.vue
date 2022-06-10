@@ -42,7 +42,7 @@
       </v-btn>
       <v-btn
         route
-        :to="{ name: 'Authenticate' }"
+        :to="{ name: 'Locations.Mine' }"
         large
         color="info"
         text

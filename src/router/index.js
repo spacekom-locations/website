@@ -16,7 +16,7 @@ const mainRoutes = [
 const routes = [...mainRoutes, ...userRoutes, ...locationRoutes];
 
 const router = new VueRouter({
-  mode: "history",
+  mode: process.env.NODE_ENV == "production" ? "history" : "hash",
   routes,
   scrollBehavior(to, form, savedPosition) {
     if (savedPosition) return savedPosition;

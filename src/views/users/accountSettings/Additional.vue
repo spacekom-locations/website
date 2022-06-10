@@ -3,7 +3,7 @@
     class="pa-4"
     max-width="800"
     flat
-    @keydown.enter="updateAdditionalInfo"
+    @keyup.enter="updateAdditionalInfo"
   >
     <v-row>
       <v-col>

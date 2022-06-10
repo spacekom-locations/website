@@ -15,6 +15,15 @@ Vue.use(DatetimePicker);
 
 Vue.config.productionTip = false;
 
+import * as VueGoogleMaps from "vue2-google-maps";
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: "AIzaSyCpd_oyIwSA8yZX0FRYn6Xs4BL3D3vBHsE",
+  },
+  installComponents: true,
+});
+
 import APIConfig from "./api/config";
 import userConfig from "./config/index";
 APIConfig.setDefaults();
@@ -24,6 +33,11 @@ export const mainEventBus = new Vue({ store });
 
 import { Cropper } from "vue-advanced-cropper";
 import "vue-advanced-cropper/dist/style.css";
+
+import VCalendar from "v-calendar";
+Vue.use(VCalendar, {
+  componentPrefix: "vc", // Use <vc-calendar /> instead of <v-calendar />
+});
 
 Vue.component("avatar-cropper", Cropper);
 

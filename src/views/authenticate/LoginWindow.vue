@@ -12,7 +12,7 @@
         ></h6>
 
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" @keypress.enter="login">
+          <v-col cols="12" sm="8" @keyup.enter="login">
             <v-text-field
               :label="$t('pages.authenticate.login.fields.email.label')"
               :placeholder="

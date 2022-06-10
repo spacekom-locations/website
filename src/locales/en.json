@@ -1,7 +1,12 @@
 {
   "direction": "ltr",
   "name": "English",
-  "components": {},
+  "components": {
+    "confirm_delete": {
+      "title": "Confirm Deletion",
+      "message": "Are you sure you want to delete this item"
+    }
+  },
   "pages": {
     "authenticate": {
       "signup": {
@@ -98,5 +103,14 @@
         "BUSINESS_OWNER_AFFILIATED": "Business Owner Affiliated"
       }
     }
+  },
+  "misc": {
+    "cancel": "Cancel",
+    "close": "Close",
+    "edit": "Edit",
+    "save": "Save",
+    "remove": "Remove",
+    "password": "Password",
+    "confirm_password": "Confirm Password"
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-4" max-width="800" flat @keydown.enter="updatePersonalInfo">
+  <v-card class="pa-4" max-width="800" flat @keyup.enter="updatePersonalInfo">
     <upload-new-avatar
       :show="showUploadNewAvatar"
       @close="showUploadNewAvatar = false"

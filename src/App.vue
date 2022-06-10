@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <main-app-bar v-if="showAppBar" />
-    <v-main :class="{ 'pt-16': $route.name.toUpperCase() != 'HOME' }">
+    <v-main :class="{ 'pt-16': $route.name && $route.name.toUpperCase() != 'HOME' }">
       <v-snackbar
         v-model="showSystemCustomAlert"
         color="error"

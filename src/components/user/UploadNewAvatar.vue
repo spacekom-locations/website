@@ -28,7 +28,7 @@
             outlined
             label="url"
             placeholder="Enter image url. e.g Http://url.com/image.jpg"
-            @keydown.enter="image.src = $event.target.value"
+            @keyup.enter="image.src = $event.target.value"
             id="id"
           ></v-text-field>
           <p class="headline">Or</p>

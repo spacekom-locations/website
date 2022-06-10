@@ -1,5 +1,5 @@
 <template>
-  <div @keydown.enter="updatePassword">
+  <div @keyup.enter="updatePassword">
     
     
     <v-row>
