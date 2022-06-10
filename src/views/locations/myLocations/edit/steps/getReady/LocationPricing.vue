@@ -195,6 +195,7 @@ export default {
   },
   methods: {
     getCurrencySymbol(currencyCode) {
+      if(!currencyCode) return '#';
       currencyCode = currencyCode.trim().toUpperCase();
       for (let currency of this.validCurrencies) {
         if (currency.code.trim().toUpperCase() == currencyCode) {
