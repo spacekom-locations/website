@@ -1,13 +1,8 @@
 <template>
-  <v-container class="mt-12">
+  <v-container class="mt-4 fill-height" style="max-width: 1080px; min-height: 80vh;">
     <v-row align="center" justify="center">
-      <v-col cols="12" sm="10" class="pt-12">
-        <v-card
-          class="elevation-0"
-          style="border-color: #2196f3"
-          outlined
-          flat
-        >
+      <v-col cols="12" sm="10">
+        <v-card class="elevation-0" style="border-color: #2196f3" outlined flat>
           <v-window v-model="step">
             <v-window-item :value="1">
               <login-window @signup="step++" />

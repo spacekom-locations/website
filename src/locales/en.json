@@ -102,6 +102,500 @@
         "BRIDE": "Bride",
         "BUSINESS_OWNER_AFFILIATED": "Business Owner Affiliated"
       }
+    },
+    "location": {
+      "motor_home_parking_types": {
+        "ON_PROPERTY": "On property",
+        "STREET": "Street"
+      },
+      "access_availability_types": {
+        "ELEVATOR": "Elevator",
+        "FREIGHT_ELEVATOR": "Freight Elevator",
+        "STAIRS": "Stairs",
+        "STREET_LEVEL": "Street Level",
+        "WHEEL_CHAIR_HANDICAP_ACCESS": "Wheelchair / Handicap Access"
+      },
+      "countries": {
+        "UAE": "United Arab Emirates"
+      },
+      "amenities": {
+        "AIR_CONDITIONING": "Air Conditioning",
+        "HAIR_MAKEUP_AREA": "Hair/Makeup area",
+        "WIFI": "Wifi"
+      },
+      "initial_amenities": ["Air Conditioning", "Hair/Makeup area", "Wifi"],
+      "kinds": {
+        "RESIDENTIAL": {
+          "name": "Residential",
+          "types": {
+            "APARTMENT_PENTHOUSE_CONDO": "Apartment/Penthouse/Condo",
+            "HOUSE": "House",
+            "LOFT": "Loft",
+            "MANSION_ESTATE": "Mansion or Estate",
+            "RANCH": "Ranch"
+          }
+        },
+        "COMMERCIAL": {
+          "name": "Commercial",
+          "types": {
+            "AIRPORT_HANGER": "Airport/Hangar",
+            "BANK": "Bank ",
+            "BARBER_SHOP": "Barber Shop",
+            "BAR_CLUB": "Bar/Club",
+            "BREWERY": "Brewery",
+            "CEMETERY": "Cemetery",
+            "CHURCH_TEMPLE": "Church/Temple",
+            "EVENT_SPACE": "Event Space",
+            "FARM_RANCH": "Farm/Ranch",
+            "DANCE_FITNESS_GYM": "Dance/Fitness/Gym",
+            "GALLERY": "Gallery",
+            "DOCTOR_OFFICE_HOSPITAL": "Doctor's Office/Hospital",
+            "HOTEL_MOTEL": "Hotel/Motel",
+            "INDUSTRIAL_BUILDINGS": "Industrial Buildings",
+            "MUSEUM": "Museum",
+            "OFFICE": "Office",
+            "RESTAURANT_CAFE": "Restaurant/Cafe",
+            "RETAIL_SMALL_BUSINESS": "Retail/Small Business",
+            "SALON_SPA": "Salon/Spa",
+            "SCHOOL_UNIVERSITY_DORMITORY": "School/University/Dormitory",
+            "SPORTS_VENUE": "Sports Venue",
+            "THEATER": "Theater",
+            "WAREHOUSE": "Warehouse",
+            "WINERY": "Winery"
+          }
+        },
+        "STUDIO": {
+          "name": "Studio",
+          "types": {
+            "FILM_STUDIO": "Film Studio",
+            "LOFT_STUDIO": "Loft Studio",
+            "PHOTOGRAPHY_STUDIO": "Photography Studio",
+            "RECORDING_STUDIO": "Recording Studio",
+            "TV_STUDIO_STAGE": "TV Studio/Stage"
+          }
+        },
+        "TRANSPORTATION": {
+          "name": "Transportation",
+          "types": {
+            "BOAT": "Boat",
+            "CAR": "Car",
+            "MOTORCYCLE": "Motorcycle",
+            "AVIATION": "Aviation",
+            "TRAIN": "Train",
+            "TRUCK": "Truck",
+            "VAN_BUS_RV": "Van/Bus/RV"
+          }
+        }
+      },
+      "activities": {
+        "PRODUCTION": {
+          "name": "Production",
+          "description": "Film and photo shoots "
+        },
+        "EVENT": {
+          "name": "Event",
+          "description": "Baby showers, wedding receptions, art exhibits "
+        },
+        "MEETING": {
+          "name": "Meeting",
+          "description": "Workshops, trainings, conferences "
+        }
+      },
+      "initial_crew_rules": [
+        "No adult filming",
+        "No electricity usage",
+        "No smoking",
+        "No pets",
+        "No outside catering/food",
+        "No cooking",
+        "No alcohol",
+        "No loud noises"
+      ],
+
+      "currencies": {
+        "SDG": { "text": "Sudan Pound", "symbol": "ج.س" },
+        "USD": { "text": "United State Dollar", "symbol": "$" },
+        "EUR": { "text": "Euro", "symbol": "€" },
+        "GBP": { "text": "Pound Sterling", "symbol": "£" },
+        "EAD": { "text": "United Arab Emirates Dirham", "symbol": "د.إ" },
+        "SR": { "text": "Saudi Riyal", "symbol": "﷼" }
+      },
+      "activities_types": {
+        "BASEBALL_FIELD": "Baseball Field",
+        "BOWLING_ALLEY": "Bowling alley",
+        "BOXING_RING": "Boxing Ring",
+        "DANCE": "Dance",
+        "DANCE_YOGA_FITNESS": "Dance/Yoga/Fitness",
+        "EQUESTRIAN": "Equestrian",
+        "FOOTBALL_FIELD": "Football Field",
+        "GOLF": "Golf",
+        "GUN_RANGE_ARCHERY": "Gun Range/Archery",
+        "GYM": "Gym",
+        "HOCKEY": "Hockey",
+        "INDOOR_BASKETBALL": "Indoor Basketball",
+        "INDOOR_ROCK_CLIMBING": "Indoor Rock Climbing",
+        "OUTDOOR_BASKETBALL": "Outdoor Basketball",
+        "POOL_TABLE": "Pool table",
+        "SOCCER_FIELD": "Soccer Field",
+        "TENNIS_COURT": "Tennis Court",
+        "TRACK_AND_FIELD": "Track and Field",
+        "VOLLEYBALL": "Volleyball"
+      },
+      "architectural_styles": {
+        "AMERICANA_ANYWHERE_AMERICA": "Americana/Anywhere America",
+        "ART_DECO": "Art Deco",
+        "ASIAN": "Asian",
+        "BEACH_HOUSE": "Beach House",
+        "BEACHFRONT": "Beachfront",
+        "BOHEMIAN": "Bohemian",
+        "BUNGALOW": "Bungalow",
+        "CABIN": "Cabin",
+        "CAPE_COD": "Cape Cod",
+        "CASTLE_CHATEAU": "Castle/Chateau",
+        "COLONIAL": "Colonial",
+        "CONTEMPORARY_MODERN": "Contemporary Modern",
+        "CRAFTSMAN": "Craftsman",
+        "CREOLE": "Creole",
+        "DATED_RETRO": "Dated/Retro",
+        "DESERT": "Desert",
+        "DILAPIDATED_NEGLECTED": "Dilapidated/Neglected",
+        "DUTCH_COLONIAL": "Dutch Colonial",
+        "EXOTIC_TROPICAL": "Exotic/Tropical",
+        "FRENCH": "French",
+        "GEORGIAN_SOUTHERN": "Georgian/Southern",
+        "GOTHIC_VICTORIAN": "Gothic/Victorian",
+        "GREEK_NEOCLASSICAL": "Greek/Neoclassical",
+        "HIGH_TECH": "High Tech",
+        "INDUSTRIAL": "Industrial",
+        "LAKE_HOUSE": "Lake House",
+        "MEDITERRANEAN": "Mediterranean",
+        "MID_CENTURY_MODERN": "Mid-century Modern",
+        "MOROCCAN": "Moroccan",
+        "OLD_HOLLYWOOD": "Old Hollywood",
+        "RANCH_STYLE": "Ranch Style",
+        "RUSTIC": "Rustic",
+        "SOUTHWESTERN": "Southwestern",
+        "SPANISH": "Spanish",
+        "TRAILER_PARK_MANUFACTURED_HOME": "Trailer Park/Manufactured Home",
+        "TUDOR": "Tudor",
+        "ZEN": "Zen"
+      },
+      "bathrooms_types": {
+        "CLAWFOOT_BATHTUB": "Clawfoot Bathtub",
+        "DOUBLE_SINK": "Double Sink",
+        "LARGE_SHOWER": "Large Shower",
+        "MARBLE_BATHROOM": "Marble Bathroom",
+        "MODERN_BATHROOM": "Modern Bathroom",
+        "SAUNA_STEAM_ROOM": "Sauna/Steam Room",
+        "SPA_BATHTUB": "Spa Bathtub"
+      },
+      "ceiling_types": {
+        "CATHEDRAL_CEILING": "Cathedral Ceiling",
+        "COFFERED_CEILING": "Coffered Ceiling",
+        "CONVENTIONAL_CEILING": "Conventional Ceiling",
+        "COVE_CEILING": "Cove Ceiling",
+        "EXPOSED_BEAMS": "Exposed Beams",
+        "HIGH_CEILING": "High Ceiling",
+        "ORNATE_CEILING": "Ornate Ceiling",
+        "SUSPENDED_CEILING": "Suspended Ceiling",
+        "TRAY_CEILING": "Tray Ceiling",
+        "VAULTED_CEILING": "Vaulted Ceiling"
+      },
+      "doors_types": {
+        "BATTENED_AND_LEDGED_DOORS": "Battened and Ledged Doors",
+        "DUTCH_DOORS": "Dutch Doors",
+        "FRENCH_DOORS": "French Doors",
+        "GLASS_DOORS": "Glass Doors",
+        "ORNATE_DOORS": "Ornate Doors",
+        "PIVOT_DOORS": "Pivot Doors",
+        "ROLLER_GARAGE_DOOR": "Roller Garage Door",
+        "SCREEN_DOORS": "Screen Doors",
+        "SLIDING_DOORS": "Sliding Doors",
+        "STAINED_GLASS": "Stained Glass",
+        "STEEL_DOORS": "Steel Doors",
+        "TILT_GARAGE_DOOR": "Tilt Garage Door",
+        "WOOD_DOORS": "Wood Doors"
+      },
+      "exterior_types": {
+        "AVIARY": "Aviary",
+        "BACKYARD": "Backyard",
+        "BALCONY": "Balcony",
+        "BALUSTRADE": "Balustrade",
+        "BARN": "Barn",
+        "BBQ_GRILL": "BBQ Grill",
+        "BEACH_ACCESS": "Beach Access",
+        "BRIDGE": "Bridge",
+        "COLUMNS": "Columns",
+        "COURTYARD": "Courtyard",
+        "EXTERIOR_SHOWER": "Exterior Shower",
+        "FRONT_YARD": "Front yard",
+        "GARAGE_ATTACHED": "Garage (Attached)",
+        "GARAGE_DETACHED": "Garage (Detached)",
+        "GATES": "Gates",
+        "GAZEBO_PERGOLA": "Gazebo/Pergola",
+        "GREENHOUSE": "Greenhouse",
+        "GUEST_HOUSE": "Guest House",
+        "HELICOPTER_PAD": "Helicopter Pad",
+        "HILLS": "Hills",
+        "LARGE_GROUNDS": "Large Grounds",
+        "PLAYGROUND_SWINGS": "Playground/Swings",
+        "ROOFTOP": "Rooftop",
+        "STABLE_CORRAL": "Stable/Corral",
+        "TOOLSHED": "Toolshed",
+        "TREEHOUSE": "Treehouse",
+        "VERANDA": "Veranda",
+        "WALKWAY": "Walkway",
+        "WHITE_PICKET_FENCE": "White Picket Fence"
+      },
+      "features": {
+        "DRIVEWAY": "Driveway",
+        "ELEVATOR": "Elevator",
+        "FIREPLACE": "Fireplace",
+        "GARDEN_YARD": "Garden/Yard",
+        "POOL": "Pool",
+        "STAIRS": "Stairs",
+        "VIEWS": "View"
+      },
+      "floor_types": {
+        "CARPET_FLOOR": "Carpet Floor",
+        "CHECKER_TILES_FLOOR": "Checker Tiles Floor",
+        "CONCRETE_FLOOR": "Concrete Floor",
+        "DANCE_FLOOR": "Dance Floor",
+        "DARK_WOOD_FLOOR": "Dark Wood Floor",
+        "GLASS_FLOOR": "Glass Floor",
+        "INLAID_PATTERNS_FLOOR": "Inlaid/Patterns Floor",
+        "LIGHT_WOOD_WHITEWASH_FLOOR": "Light Wood/Whitewash Floor",
+        "LINOLEUM_FLOOR": "Linoleum Floor",
+        "MARBLE_FLOOR": "Marble Floor",
+        "STONE_FLOOR": "Stone Floor",
+        "TILES_FLOOR": "Tiles Floor"
+      },
+      "interior_types": {
+        "ATRIUM": "Atrium",
+        "ATTIC": "Attic",
+        "BABY_ROOM": "Baby Room",
+        "BALLROOM": "Ballroom",
+        "BASEMENT": "Basement",
+        "BOOKCASE": "Bookcase",
+        "CLOSET": "Closet",
+        "CROWN_MOLDING": "Crown Molding",
+        "DRESSING_ROOM": "Dressing Room",
+        "GAME_ROOM": "Game room",
+        "HOME_BAR": "Home Bar",
+        "HOME_GYM": "Home Gym",
+        "HOME_LIBRARY": "Home Library",
+        "HOME_OFFICE": "Home Office",
+        "HOME_RECORDING_STUDIO": "Home Recording Studio",
+        "HOME_THEATRE": "Home Theatre",
+        "KID_ROOM_TEENAGER_ROOM": "Kid Room/Teenager Room",
+        "LANDRY_ROOM": "Laundry Room",
+        "OPEN_FLOOR_PLAN": "Open Floor Plan",
+        "PIANO": "Piano",
+        "WALK_IN_CLOSET": "Walk-in closet",
+        "WINE_CELLAR": "Wine Cellar",
+        "WORKSHOP": "Workshop"
+      },
+      "kitchen_features": {
+        "BREAKFAST_NOOK": "Breakfast Nook",
+        "BRIGHT_KITCHEN": "Bright Kitchen",
+        "CHEFS_KITCHEN": "Chef's Kitchen",
+        "COUNTRY_KITCHEN": "Country Kitchen",
+        "DATED_50S_TO_70S_KITCHEN": "Dated/50's to 70's Kitchen",
+        "GLASS_KITCHEN_CABINETS": "Glass Kitchen Cabinets",
+        "GRANITE_COUNTERTOP": "Granite Countertop",
+        "KITCHEN_ISLAND": "Kitchen Island",
+        "OPEN_KITCHEN": "Open Kitchen",
+        "STAINLESS_STEEL_KITCHEN": "Stainless Steel Kitchen",
+        "WHITE_KITCHEN": "White Kitchen",
+        "WOOD_KITCHEN_CABINETS": "Wood Kitchen Cabinets",
+        "WOOD_KITCHEN_COUNTERROP": "Wood Kitchen Countertop"
+      },
+      "styles": {
+        "AMERICANA_ANYWHERE_AMERICA": {
+          "name": "Americana/Anywhere America",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-americana-anywhere-america.jpg"
+        },
+        "ART_DECO": {
+          "name": "Art Deco",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-art-deco.jpg"
+        },
+        "ASIAN": {
+          "name": "Asian",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-asian.jpg"
+        },
+        "BEACH_HOUSE": {
+          "name": "Beach House",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-beach-house.jpg"
+        },
+        "BEACHFRONT": {
+          "name": "Beachfront",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-beachfront.jpg"
+        },
+        "BOHEMIAN": {
+          "name": "Bohemian",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-bohemian.jpg"
+        },
+        "BUNGALOW": {
+          "name": "Bungalow",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-bungalow.jpg"
+        },
+        "CABIN": {
+          "name": "Cabin",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-cabin.jpg"
+        },
+        "CAPE_COD": {
+          "name": "Cape Cod",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-cape-cod.jpg"
+        },
+        "CASTLE_CHATEAU": {
+          "name": "Castle/Chateau",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-castle-chateau.jpg"
+        },
+        "COLONIAL": {
+          "name": "Colonial",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-colonial.jpg"
+        },
+        "CONTEMPORARY_MODERN": {
+          "name": "Contemporary Modern",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-modern.jpg"
+        },
+        "CRAFTSMAN": {
+          "name": "Craftsman",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-craftsman.jpg"
+        },
+        "CREOLE": {
+          "name": "Creole",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-creole.jpg"
+        },
+        "DATED_RETRO": {
+          "name": "Dated/Retro",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-dated-retro.jpg"
+        },
+        "DESERT": {
+          "name": "Desert",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-desert-style.jpg"
+        },
+
+        "DILAPIDATED_NEGLECTED": {
+          "name": "Dilapidated/Neglected",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-dilapidated-neglected.jpg"
+        },
+        "DUTCH_COLONIAL": {
+          "name": "Dutch Colonial",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-dutch-colonial.jpg"
+        },
+        "EXOTIC_TROPICAL": {
+          "name": "Exotic/Tropical",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-exotic-tropical.jpg"
+        },
+        "FRENCH": {
+          "name": "French",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-french.jpg"
+        },
+        "GEORGIAN_SOUTHERN": {
+          "name": "Georgian/Southern",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-georgian-southern.jpg"
+        },
+        "GOTHIC_VICTORIAN": {
+          "name": "Gothic/Victorian",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-gothic-victorian.jpg"
+        },
+        "GREEK_NEOCLASSICAL": {
+          "name": "Greek/Neoclassical",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-greek-neoclassical.jpg"
+        },
+        "HIGH_TECH": {
+          "name": "High Tech",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-high-tech.jpg"
+        },
+        "INDUSTRIAL": {
+          "name": "Industrial",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-industrial.jpg"
+        },
+        "LAKE_HOUSE": {
+          "name": "Lake House",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-lake-house.jpg"
+        },
+        "MEDITERRANEAN": {
+          "name": "Mediterranean",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-mediterranean.jpg"
+        },
+        "MID_CENTURY_MODERN": {
+          "name": "Mid-century Modern",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-midcentury-modern.jpg"
+        },
+        "MOROCCAN": {
+          "name": "Moroccan",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-moroccan.jpg"
+        },
+        "OLD_HOLLYWOOD": {
+          "name": "Old Hollywood",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-old-hollywood.jpg"
+        },
+        "RANCH_STYLE": {
+          "name": "Ranch Style",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-ranch-style.jpg"
+        },
+        "RUSTIC": {
+          "name": "Rustic",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-rustic.jpg"
+        },
+        "SOUTHWESTERN": {
+          "name": "Southwestern",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-pueblo-santa-fe.jpg"
+        },
+        "SPANISH": {
+          "name": "Spanish",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-spanish.jpg"
+        },
+        "TRAILER_PARK_MANUFACTURED_HOME": {
+          "name": "Trailer Park/Manufactured Home",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-trailer-park-manufactured-home.jpg"
+        },
+        "TUDOR": {
+          "name": "Tudor",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-tudor.jpg"
+        },
+        "ZEN": {
+          "name": "Zen",
+          "image": "https://static.giggster.com/app-images/styles/architectural-style-zen.jpg"
+        }
+      },
+      "walls_types": {
+        "BRICK_WALLS": "Brick Walls",
+        "COLORED_WALLS": "Colored Walls",
+        "CONCRETE_WALLS": "Concrete Walls",
+        "CORRUGATED_METAL_WALLS": "Corrugated Metal Walls",
+        "GLASS_WALL": "Glass Wall",
+        "GRAFFITI_WALL": "Graffiti Wall",
+        "MIRRORED": "Mirrored",
+        "MURAL_WALL": "Mural Wall",
+        "STONE_WALLS": "Stone Walls",
+        "TEXTURE_WALLS": "Texture Walls",
+        "TILED_WALLS": "Tiled Walls",
+        "WALLPAPER": "Wallpaper",
+        "WHITE_WALLS": "White Walls",
+        "WHITEWASHED_WALLS": "Whitewashed Walls",
+        "WOOD_PANELED_WALLS": "Wood-Paneled Walls"
+      },
+      "water_features": {
+        "FOUNTAIN": "Fountain",
+        "LAKE": "Lake",
+        "POND_STREAM_CREEK": "Pond/Stream/Creek",
+        "REFLECTING_POOL": "Reflecting Pool",
+        "WATERFALL": "Waterfall"
+      },
+      "windows_types": {
+        "BAY_OR_BOW_WINDOWS": "Bay or Bow Windows",
+        "FLOOR_TO_CEILING_WINDOWS": "Floor-to-Ceiling Windows",
+        "HINGED_CASEMENT_WINDOWS": "Hinged/Casement Windows",
+        "ONE_WAY_MIRROR": "One-Way Mirror",
+        "PICTURE_STATIONARY_WINDOWS": "Picture/Stationary Windows",
+        "SASH_UP_AND_DOWN_HUNG_WINDOWS": "Sash/Up And Down/Hung Windows",
+        "SLIDER_WINDOWS": "Slider Windows",
+        "STAINED_GLASS_WINDOWS": "Stained Glass Windows",
+        "TRANSOM_WINDOW": "Transom Window"
+      }
     }
   },
   "misc": {
@@ -111,6 +605,15 @@
     "save": "Save",
     "remove": "Remove",
     "password": "Password",
-    "confirm_password": "Confirm Password"
+    "confirm_password": "Confirm Password",
+    "weekDays": {
+      "SUNDAY": "Sunday",
+      "MONDAY": "Monday",
+      "TUESDAY": "Tuesday",
+      "WEDNESDAY": "Wednesday",
+      "THURSDAY": "Thursday",
+      "FRIDAY": "Friday",
+      "SATURDAY": "Saturday"
+    }
   }
 }

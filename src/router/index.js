@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import HomeView from "../views/home/Index.vue";
 import userRoutes from "./user";
 import locationRoutes from "./locations";
+import bookingsRoutes from "./bookings";
 Vue.use(VueRouter);
 
 const mainRoutes = [
@@ -11,9 +12,20 @@ const mainRoutes = [
     name: "Home",
     component: HomeView,
   },
+  {
+    path: "/search",
+    name: "Search",
+    component: () =>
+      import(/* webpackChunkName: "search" */ "../views/search/Index.vue"),
+  },
 ];
 
-const routes = [...mainRoutes, ...userRoutes, ...locationRoutes];
+const routes = [
+  ...mainRoutes,
+  ...userRoutes,
+  ...locationRoutes,
+  ...bookingsRoutes,
+];
 
 const router = new VueRouter({
   mode: process.env.NODE_ENV == "production" ? "history" : "hash",

@@ -16,7 +16,7 @@ export const indexMyLocations = async function () {
 };
 
 export const showLocation = async function (id) {
-  const response = await api.get(`users/0/locations/${id}`);
+  const response = await api.get(`locations/${id}`);
   return response.data;
 };
 
@@ -37,5 +37,15 @@ export const removeLocationImage = async function (locationId, image) {
   const response = await api.delete(`users/0/locations/${locationId}/images`, {
     image,
   });
+  return response.data;
+};
+
+export const search = async function (query) {
+  const response = await api.get("/locations/search", query);
+  return response.data;
+};
+
+export const getUserLocations = async function (userId) {
+  const response = await api.get(`users/${userId}/locations`);
   return response.data;
 };

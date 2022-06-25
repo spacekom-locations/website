@@ -1,21 +1,18 @@
 <template>
   <v-row>
     <v-col cols="12" md="6" class="blue rounded-br-xl">
-      <div style="text-align: center; padding: 180px 0">
+      <div style="text-align: center; padding: 100px 0">
         <v-card-text class="white--text">
-          <h3 class="text-center display-1">
+          <h3 class="text-center headline">
             {{ $t("pages.authenticate.signup.goto_login_card.title") }}
           </h3>
-          <p class="my-6"></p>
-
           <h6
-            class="text-center headline"
+            class="text-center"
             v-html="$t('pages.authenticate.signup.goto_login_card.description')"
           ></h6>
-          <p class="my-6 py-6"></p>
         </v-card-text>
         <div class="text-center">
-          <v-btn width="250" x-large outlined dark @click="$emit('login')">
+          <v-btn width="200" x-large outlined dark @click="$emit('login')">
             {{ $t("pages.authenticate.signup.goto_login_card.login_button") }}
           </v-btn>
         </div>
@@ -23,20 +20,17 @@
     </v-col>
 
     <v-col cols="12" md="6">
-      <v-card-text class="mt-12">
-        <h4 class="text-center display-1 info--text">
+      <v-card-text class="mt-4">
+        <h3 class="text-center info--text">
           {{ $t("pages.authenticate.signup.title") }}
-        </h4>
-        <p class="my-6"></p>
-
-        <h6
-          class="text-center grey--text headline"
+        </h3>
+        <h5
+          class="text-center grey--text"
           v-html="$t('pages.authenticate.signup.description')"
-        ></h6>
-        <p class="my-6"></p>
+        ></h5>
 
-        <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" @keyup.enter="signup">
+        <v-row align="center" justify="center" class="my-0 py-0">
+          <v-col cols="12" sm="11" @keyup.enter="signup" class="my-0 py-0">
             <v-row>
               <v-col cols="12">
                 <v-text-field
@@ -47,11 +41,12 @@
                   outlined
                   color="blue"
                   autocomplete="false"
-                  class="mt-4"
+                  class="mb-2"
                   v-model="name"
                   :error-messages="nameErrors"
+                  :hide-details="nameErrors.length == 0"
                   prepend-inner-icon="mdi-account-outline"
-          prefix="  "
+                  prefix="  "
                 />
               </v-col>
             </v-row>
@@ -66,11 +61,13 @@
               autocomplete="false"
               v-model="email"
               :error-messages="emailErrors"
+              :hide-details="emailErrors.length == 0"
               prepend-inner-icon="mdi-email-outline"
-          prefix="  "
+              prefix="  "
+              class="mb-2"
             />
-            <v-row>
-              <v-col cols="12" lg="6">
+            <v-row class="my-0 py-0">
+              <v-col cols="12" lg="6" class="my-0 py-0">
                 <v-text-field
                   :label="$t('pages.authenticate.signup.fields.password.label')"
                   :placeholder="
@@ -82,11 +79,13 @@
                   type="password"
                   v-model="password"
                   :error-messages="passwordErrors"
+                  :hide-details="passwordErrors.length == 0"
                   prepend-inner-icon="mdi-lock-outline"
-          prefix="  "
+                  prefix="  "
+                  class="mb-2"
                 />
               </v-col>
-              <v-col cols="12" lg="6">
+              <v-col cols="12" lg="6" class="my-0 py-0">
                 <v-text-field
                   :label="
                     $t(
@@ -105,13 +104,15 @@
                   :error-messages="passwordConfirmationErrors"
                   v-model="passwordConfirmation"
                   prepend-inner-icon="mdi-lock-outline"
-          prefix="  "
+                  :hide-details="passwordConfirmation.length == 0"
+                  prefix="  "
+                  class="mb-2"
                 />
               </v-col>
             </v-row>
 
-            <h3 v-html="$t('pages.authenticate.signup.terms_conditions')"></h3>
-            <div class="my-6"></div>
+            <h3 class="my-2" v-html="$t('pages.authenticate.signup.terms_conditions')"></h3>
+
             <v-btn
               color="blue"
               @click="signup"
@@ -173,7 +174,9 @@ export default {
 
       if (this.passwordConfirmation != this.password) {
         this.passwordConfirmationErrors.push(
-          this.$t("pages.authenticate.signup.fields.password_confirmation.errors.not_matched")
+          this.$t(
+            "pages.authenticate.signup.fields.password_confirmation.errors.not_matched"
+          )
         );
         return false;
       }
@@ -244,6 +247,7 @@ export default {
 
 <style scoped>
 .v-application .rounded-br-xl {
-  border-bottom-right-radius: 250px !important;
+  border-bottom-right-radius: 100px !important;
+  border-top-right-radius: 0px !important;
 }
 </style>

@@ -1,9 +1,28 @@
 <template>
-  <v-app-bar fixed :color="bg" elevate-on-scroll class="px-4">
+  <v-app-bar
+    fixed
+    :color="bg"
+    class="px-4 elevation-0"
+    :style="
+      bg.toLowerCase() == `transparent`
+        ? ''
+        : `border-bottom: 1px solid #d2d2d2 !important`
+    "
+  >
     <router-link :to="{ name: 'Home' }" style="text-decoration: none">
       <div class="d-flex align-center">
-        <span class="blue--text display-1 font-weight-bold"> Space</span
-        ><span class="orange--text display-1 font-weight-black">Kom </span>
+        <span
+          :class="`${
+            bg.toLowerCase() == `transparent` ? 'white' : 'blue'
+          }--text headline font-weight-bold`"
+        >
+          Space</span
+        ><span
+          :class="`${
+            bg.toLowerCase() == `transparent` ? 'yellow' : 'orange'
+          }--text headline font-weight-black`"
+          >Kom
+        </span>
       </div>
     </router-link>
 
@@ -32,45 +51,20 @@
     <template v-else>
       <v-btn
         route
-        :to="{ name: 'Authenticate' }"
+        :to="{ name: button.route.name }"
         large
-        color="info"
+        :color="bg.toLowerCase() == 'transparent' ? 'white' : 'info'"
         text
         class="mx-1"
+        v-for="(button, index) of quickAccessButtons"
+        :key="button.route.name + '_' + index"
       >
-        Bookings
+        {{ button.name }}
       </v-btn>
-      <v-btn
-        route
-        :to="{ name: 'Locations.Mine' }"
-        large
-        color="info"
-        text
-        class="mx-1"
-      >
-        Listing
-      </v-btn>
-      <v-btn
-        route
-        :to="{ name: 'Authenticate' }"
-        large
-        color="info"
-        text
-        class="mx-1"
-      >
-        Messages
-      </v-btn>
-      <v-btn
-        route
-        :to="{ name: 'Authenticate' }"
-        large
-        color="info"
-        text
-        class="mx-1"
-      >
-        Drive Bookings
-      </v-btn>
-      <notifications />
+
+      <notifications
+        :color="bg.toLowerCase() == 'transparent' ? 'white' : 'info'"
+      />
       <profile />
     </template>
   </v-app-bar>
@@ -88,14 +82,33 @@ export default {
     isAuthenticated() {
       return this.$store.getters["User/isAuthenticated"];
     },
+    transparentPages() {
+      return ["HOME"];
+    },
+    quickAccessButtons() {
+      return [
+        { name: "Bookings", route: { name: "Locations.Mine" } },
+        { name: "Listing", route: { name: "Locations.Mine" } },
+        { name: "Messages", route: { name: "Locations.Mine" } },
+        { name: "Drive Bookings", route: { name: "Locations.Mine" } },
+      ];
+    },
   },
   mounted() {
+    this.changeColor();
     window.onscroll = () => {
       this.changeColor();
     };
   },
   methods: {
     changeColor() {
+      if (
+        this.$route.name &&
+        !this.transparentPages.includes(this.$route.name.toUpperCase())
+      ) {
+        this.bg = "white";
+        return;
+      }
       if (
         document.body.scrollTop > 30 ||
         document.documentElement.scrollTop > 30
@@ -104,6 +117,11 @@ export default {
       } else {
         this.bg = "transparent";
       }
+    },
+  },
+  watch: {
+    $route() {
+      this.changeColor();
     },
   },
 };

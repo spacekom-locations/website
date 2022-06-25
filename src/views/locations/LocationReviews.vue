@@ -2,7 +2,7 @@
   <div>
     <v-row v-for="i in 1" :key="i">
       <v-col cols="12" sm="1">
-        <v-avatar size="72">
+        <v-avatar >
           <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />
         </v-avatar>
       </v-col>
@@ -17,6 +17,7 @@
           dense
           background-color="grey"
           small
+          readonly
           style="display: inline-block"
         ></v-rating>
         <p class="mt-3">

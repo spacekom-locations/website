@@ -11,7 +11,7 @@
         ></v-progress-circular>
       </v-card>
       <v-card :disabled="loading" flat max-width="1080px" class="pa-4 mx-auto">
-        <v-row class="my-16">
+        <v-row class="mt-16">
           <v-col>
             <h3 class="display-1">Moving on!</h3>
             <v-progress-linear
@@ -108,6 +108,20 @@
             <div style="max-width: 400px" class="mx-auto">
               <v-img :src="progressImage" />
             </div>
+          </v-col>
+        </v-row>
+        <v-divider></v-divider>
+        <v-row class="mt-2">
+          <v-col>
+            <v-btn
+              color="primary"
+              outlined
+              large
+              route
+              :to="{ name: 'Locations.Mine' }"
+            >
+              <span> go to listing </span>
+            </v-btn>
           </v-col>
         </v-row>
       </v-card>

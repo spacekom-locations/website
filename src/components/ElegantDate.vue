@@ -100,6 +100,9 @@ export default {
       return Sugar.Date(this.date).relative();
     },
   },
+  destroyed() {
+    window.clearInterval(this.intervalId);
+  },
 };
 </script>
 

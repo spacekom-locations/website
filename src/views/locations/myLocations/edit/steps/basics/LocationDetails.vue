@@ -51,7 +51,6 @@
           <h3 class="my-2">Main floor number (if applicable)</h3>
           <v-text-field
             type="number"
-            suffix="  sq/ft  "
             v-model="location.main_floor_number"
             outlined
             :min="0"

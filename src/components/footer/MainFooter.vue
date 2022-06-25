@@ -1,15 +1,15 @@
 <template>
-  <div class="pt-6 mt-6" style="background-color: #fbfbfb">
+  <div class="mt-6" style="background-color: #fbfbfb">
     <div class="pt-4" style="border-top: 1px solid #ccc">
-      <v-container class="py-6 my-6">
+      <v-container class="py-6 my-6" style="max-width: 1080px">
         <v-row>
           <v-col>
-            <span class="blue--text display-1 font-weight-bold"> Space</span
-            ><span class="orange--text display-1 font-weight-black">Kom </span>
+            <span class="blue--text title font-weight-bold"> Space</span
+            ><span class="orange--text title font-weight-black">Kom </span>
           </v-col>
           <v-col>
-            <h2 class="headline">Company</h2>
-            <div class="px-2 pt-2">
+            <h2 class="subtitle-2">Company</h2>
+            <div class="px-2 pt-2 body-2">
               <p>About us</p>
               <p>Brands</p>
               <p>Support</p>
@@ -17,16 +17,16 @@
             </div>
           </v-col>
           <v-col>
-            <h2 class="headline">Hosts</h2>
-            <div class="px-2 pt-2">
+            <h2 class="subtitle-2">Hosts</h2>
+            <div class="px-2 pt-2 body-2">
               <p>List spaces</p>
               <p>Resource Center</p>
               <p>Guidelines</p>
             </div>
           </v-col>
           <v-col>
-            <h2 class="headline">Activities</h2>
-            <div class="px-2 pt-2">
+            <h2 class="subtitle-2">Activities</h2>
+            <div class="px-2 pt-2 body-2">
               <p>Shoots</p>
               <p>Events</p>
               <p>Meeting</p>
@@ -35,10 +35,10 @@
               <p>View All</p>
             </div>
           </v-col>
-          
+
           <v-col>
-            <h2 class="headline">Locations</h2>
-            <div class="px-2 pt-2">
+            <h2 class="subtitle-2">Locations</h2>
+            <div class="px-2 pt-2 body-2">
               <p
                 v-for="(location, index) of [
                   'Dubai, UA',
@@ -63,26 +63,27 @@
             </div>
           </v-col>
           <v-col>
-            <h2 class="headline">Apps</h2>
-            <div class="px-2 pt-2">
+            <h2 class="subtitle-2">Apps</h2>
+            <div class="px-2 pt-2 body-2">
               <p>List spaces</p>
               <p>Resource Center</p>
               <p>Guidelines</p>
             </div>
           </v-col>
         </v-row>
-        <v-row>
-          <v-col>
-            <div
-              class="mt-6 pt-4 headline grey--text text-center"
-              style="border-top: 1px solid #ccc"
-            >
-              <span class="blue--text"> Space</span
-            ><span class="orange--text">Kom </span> All rights reserved . Made with ❤️ in Dubai, UA
-            </div>
-          </v-col>
-        </v-row>
       </v-container>
+      <v-row
+        class="mt-8"
+        style="background-color: #eaeaeaa0; border-top: 1px solid #ccc"
+      >
+        <v-col>
+          <div class="grey--text text-center">
+            <span class="blue--text"> Space</span
+            ><span class="orange--text">Kom </span> All rights reserved . Made
+            with ❤️ in Dubai, UAE
+          </div>
+        </v-col>
+      </v-row>
     </div>
   </div>
 </template>

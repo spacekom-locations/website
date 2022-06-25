@@ -14,6 +14,7 @@
             :value="rule"
             hide-details
             color="success"
+            class="mx-4"
           ></v-checkbox>
         </div>
         <div class="mt-8">
@@ -26,6 +27,7 @@
             :value="rule"
             hide-details
             color="error"
+            class="mx-4"
           ></v-checkbox>
         </div>
         <div class="my-8">
@@ -35,6 +37,7 @@
             placeholder="Add Rule"
             append-icon="mdi-plus"
             outlined
+            @click:append="addNewRule"
           ></v-text-field>
         </div>
       </v-card>

@@ -7,7 +7,7 @@
       offset-y
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-btn icon color="blue" dark class="mx-1" v-bind="attrs" v-on="on">
+        <v-btn icon :color="color" dark class="mx-1" v-bind="attrs" v-on="on">
           <v-icon dark>mdi-bell-ring</v-icon>
         </v-btn>
       </template>
@@ -46,7 +46,16 @@
           </v-list-item-group>
         </v-list>
         <v-card-actions class="pa-3">
-          <v-btn text elevation="" color="primary" dark block large route to="/notifications">
+          <v-btn
+            text
+            elevation=""
+            color="primary"
+            dark
+            block
+            large
+            route
+            to="/notifications"
+          >
             See All Notifications
           </v-btn>
         </v-card-actions>
@@ -57,17 +66,43 @@
 
 <script>
 export default {
+  props: {
+    color: {
+      default: "info",
+      type: String,
+    },
+  },
   data: () => ({
     fav: true,
     menu: false,
     message: false,
     hints: true,
     routes: [
-      { text: "Your order has been confirmed", icon: "mdi-cart", route: "/notifications" },
-      { text: "Your order has been canceled", icon: "mdi-cancel", route: "/notifications" },
-      { text: "Your order has been confirmed", icon: "mdi-cart", route: "/notifications" },
-      { text: "Your order has been canceled", icon: "mdi-cancel", route: "/notifications" },
-      { text: "Your order has been confirmed", icon: "mdi-cart", route: "/notifications" },
+      {
+        text: "Your order has been confirmed",
+        icon: "mdi-cart",
+        route: "/notifications",
+      },
+      {
+        text: "Your order has been canceled",
+        icon: "mdi-cancel",
+        route: "/notifications",
+      },
+      {
+        text: "Your order has been confirmed",
+        icon: "mdi-cart",
+        route: "/notifications",
+      },
+      {
+        text: "Your order has been canceled",
+        icon: "mdi-cancel",
+        route: "/notifications",
+      },
+      {
+        text: "Your order has been confirmed",
+        icon: "mdi-cart",
+        route: "/notifications",
+      },
     ],
   }),
 };

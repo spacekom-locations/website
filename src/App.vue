@@ -1,7 +1,9 @@
 <template>
   <v-app>
     <main-app-bar v-if="showAppBar" />
-    <v-main :class="{ 'pt-16': $route.name && $route.name.toUpperCase() != 'HOME' }">
+    <v-main
+      :class="{ 'pt-16': $route.name && $route.name.toUpperCase() != 'HOME' }"
+    >
       <v-snackbar
         v-model="showSystemCustomAlert"
         color="error"
@@ -24,7 +26,7 @@
       </v-snackbar>
       <router-view></router-view>
     </v-main>
-    <main-footer />
+    <main-footer v-if="showFooter" />
   </v-app>
 </template>
 
@@ -51,6 +53,15 @@ export default {
   computed: {
     showAppBar() {
       // if (this.$route.name.toUpperCase() == 'AUTHENTICATE') return false;
+      return true;
+    },
+    showFooter() {
+      if (
+        this.$route.name &&
+        this.$route.name.trim().toUpperCase() == "SEARCH"
+      ) {
+        return false;
+      }
       return true;
     },
   },
@@ -157,6 +168,7 @@ export default {
 <style>
 .sticky-top {
   position: sticky;
-  top: 90px;
+  top: 60px;
+  bottom: 0;
 }
 </style>

@@ -39,4 +39,12 @@ export default [
         /* webpackChunkName: "location-view" */ "../views/locations/ShowLocation.vue"
       ),
   },
+  {
+    path: "/listing/:locationId",
+    name: "Listing.Show",
+    component: () =>
+      import(
+        /* webpackChunkName: "listing-location-view" */ "../views/locations/listing/viewLocation/Index.vue"
+      ),
+  },
 ];

@@ -203,11 +203,22 @@
                   >
                     <span class="mx-3">
                       <v-icon>mdi-check</v-icon>
-                      <span class="mx-1"></span> 
+                      <span class="mx-1"></span>
                       Publish
                     </span>
                   </v-btn>
-                  <v-btn class="mx-2" color="secondary" text>Preview</v-btn>
+                  <v-btn
+                    class="mx-2"
+                    color="secondary"
+                    text
+                    route
+                    :to="{
+                      name: 'Listing.Show',
+                      params: { locationId: location.id },
+                    }"
+                  >
+                    Preview
+                  </v-btn>
                   <v-spacer></v-spacer>
                   <location-status :value="location.status" />
                 </v-card-actions>

@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import vuetify from "./plugins/vuetify";
+import GmapVue from "gmap-vue";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
 import "@mdi/font/css/materialdesignicons.css";
 import "viewerjs/dist/viewer.css";
@@ -19,7 +20,9 @@ import * as VueGoogleMaps from "vue2-google-maps";
 
 Vue.use(VueGoogleMaps, {
   load: {
-    key: "AIzaSyCpd_oyIwSA8yZX0FRYn6Xs4BL3D3vBHsE",
+    // key: "AIzaSyCpd_oyIwSA8yZX0FRYn6Xs4BL3D3vBHsE", mine
+    // key: "AIzaSyDf43lPdwlF98RCBsJOFNKOkoEjkwxb5Sc", random
+    key: "AIzaSyDG4ZwiYNLhoLMBgPjhqg9QQHGL37-dA78", // hassan's key
   },
   installComponents: true,
 });
@@ -40,6 +43,13 @@ Vue.use(VCalendar, {
 });
 
 Vue.component("avatar-cropper", Cropper);
+
+Vue.use(GmapVue, {
+  load: {
+    key: "AIzaSyDG4ZwiYNLhoLMBgPjhqg9QQHGL37-dA78",
+    libraries: "places",
+  },
+});
 
 const vm = new Vue({
   router,

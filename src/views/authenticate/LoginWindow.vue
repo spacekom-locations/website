@@ -1,18 +1,18 @@
 <template>
   <v-row>
     <v-col cols="12" md="6">
-      <v-card-text class="mt-12">
-        <h4 class="text-center display-1 info--text">
+      <v-card-text class="mt-4">
+        <h3 class="text-center info--text">
           {{ $t("pages.authenticate.login.title") }}
-        </h4>
-        <p class="mx-4"></p>
-        <h6
-          class="text-center headline grey--text"
-          v-html="$t('pages.authenticate.login.description')"
-        ></h6>
+        </h3>
 
-        <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" @keyup.enter="login">
+        <h5
+          class="text-center grey--text"
+          v-html="$t('pages.authenticate.login.description')"
+        ></h5>
+
+        <v-row align="center" justify="center" class="my-0 py-0">
+          <v-col cols="12" sm="10" @keyup.enter="login" class="my-4 py-0">
             <v-text-field
               :label="$t('pages.authenticate.login.fields.email.label')"
               :placeholder="
@@ -21,11 +21,12 @@
               outlined
               color="blue"
               autocomplete="false"
-              class="mt-16"
+              class="my-2"
               v-model="email"
               :error-messages="emailErrors"
+              :hide-details="emailErrors.length == 0"
               prepend-inner-icon="mdi-email-outline"
-          prefix="  "
+              prefix="  "
             />
             <v-text-field
               :label="$t('pages.authenticate.login.fields.password.label')"
@@ -38,8 +39,9 @@
               type="password"
               v-model="password"
               :error-messages="passwordErrors"
+              :hide-details="passwordErrors.length == 0"
               prepend-inner-icon="mdi-lock-outline"
-          prefix="  "
+              prefix="  "
             />
             <v-alert
               :border="responseAlert.border"
@@ -57,7 +59,7 @@
                 </li>
               </ul>
             </v-alert>
-            <v-card-actions class="py-4">
+            <v-card-actions class="py-2">
               <v-spacer></v-spacer>
               <span class="blue--text">
                 {{ $t("pages.authenticate.login.forgot_password") }}
@@ -75,25 +77,22 @@
             >
               {{ $t("pages.authenticate.login.login_button") }}
             </v-btn>
-
-            <div class="my-6 py-6"></div>
           </v-col>
         </v-row>
       </v-card-text>
     </v-col>
     <v-col cols="12" md="6" class="blue rounded-bl-xl">
-      <div style="text-align: center; padding: 180px 0">
+      <div style="text-align: center; padding: 100px 0">
         <v-card-text class="white--text">
-          <h3 class="text-center display-1">
+          <h3 class="text-center headline">
             {{ $t("pages.authenticate.login.goto_signup_card.title") }}
           </h3>
-          <p class="my-6"></p>
+
           <h6
-            class="text-center white--text darken-2 headline"
+            class="text-center white--text darken-2"
             v-html="$t('pages.authenticate.login.goto_signup_card.description')"
           ></h6>
         </v-card-text>
-        <p class="my-6 py-6"></p>
 
         <div class="text-center">
           <v-btn width="250" x-large outlined dark @click="$emit('signup')">
@@ -184,7 +183,7 @@ export default {
           if (errorData.errors.password) {
             this.passwordErrors = errorData.errors.password;
           }
-        }else {
+        } else {
           //show the response message
           this.responseAlert.show = true;
           this.responseAlert.type = "error";
@@ -203,6 +202,7 @@ export default {
 
 <style scoped>
 .v-application .rounded-bl-xl {
-  border-top-left-radius: 250px !important;
+  border-top-left-radius: 100px !important;
+  border-bottom-left-radius: 0px !important;
 }
 </style>
