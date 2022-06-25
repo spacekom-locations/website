@@ -4,6 +4,7 @@ import HomeView from "../views/home/Index.vue";
 import userRoutes from "./user";
 import locationRoutes from "./locations";
 import bookingsRoutes from "./bookings";
+import messagesRoutes from "./messages";
 Vue.use(VueRouter);
 
 const mainRoutes = [
@@ -25,6 +26,7 @@ const routes = [
   ...userRoutes,
   ...locationRoutes,
   ...bookingsRoutes,
+  ...messagesRoutes,
 ];
 
 const router = new VueRouter({

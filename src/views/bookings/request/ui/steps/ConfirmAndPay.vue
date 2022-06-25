@@ -25,7 +25,6 @@
         <p class="font-weight-bold">Name on card</p>
         <v-text-field
           outlined
-          
           placeholder="Name"
           prefix="   "
           :hide-details="true"
@@ -36,7 +35,6 @@
         <p class="font-weight-bold">country or region</p>
         <v-text-field
           outlined
-          
           placeholder="Country"
           prefix="   "
           :hide-details="true"
@@ -44,7 +42,6 @@
         />
         <v-text-field
           outlined
-          
           placeholder="Zip"
           prefix="   "
           :hide-details="true"
@@ -52,11 +49,20 @@
         />
       </div>
     </div>
+    <div class="mt-6">
+      <v-btn color="success" depressed large @click="goNext"> Continue </v-btn>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    goNext() {
+      alert("API Error");
+    },
+  },
+};
 </script>
 
 <style>

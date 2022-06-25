@@ -87,10 +87,10 @@ export default {
     },
     quickAccessButtons() {
       return [
-        { name: "Bookings", route: { name: "Locations.Mine" } },
+        { name: "Bookings", route: { name: "Bookings.Index" } },
         { name: "Listing", route: { name: "Locations.Mine" } },
-        { name: "Messages", route: { name: "Locations.Mine" } },
-        { name: "Drive Bookings", route: { name: "Locations.Mine" } },
+        { name: "Messages", route: { name: "Messages.Index" } },
+        // { name: "Drive Bookings", route: { name: "Locations.Mine" } },
       ];
     },
   },
