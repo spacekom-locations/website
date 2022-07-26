@@ -46,7 +46,9 @@
         <p class="font-weight-bold my-2">About you</p>
         <v-textarea v-model="aboutRenter" outlined rows="4" />
       </div>
-      <div>
+      <v-card-actions>
+        
+        <v-spacer></v-spacer>
         <v-btn
           color="success"
           depressed
@@ -61,7 +63,7 @@
         >
           Continue
         </v-btn>
-      </div>
+      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -113,7 +115,6 @@ export default {
         projectDescription: this.projectDescription,
         aboutRenter: this.aboutRenter,
       };
-      console.log(details);
       this.$store.commit("Bookings/setCurrentBooking", {
         location: this.location,
         bookingDetails: details,

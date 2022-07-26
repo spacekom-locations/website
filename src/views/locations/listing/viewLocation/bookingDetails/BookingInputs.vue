@@ -212,7 +212,7 @@ export default {
             this.$store.getters["Bookings/currentBooking"].bookingDetails
           ) != JSON.stringify(value)
         ) {
-          console.log("m");
+          
           this.$store.commit("Bookings/setCurrentBooking", {
             location: this.location,
             bookingDetails: value,

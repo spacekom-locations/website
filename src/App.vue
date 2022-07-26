@@ -56,9 +56,10 @@ export default {
       return true;
     },
     showFooter() {
+      const routesNamesToHide = ["SEARCH", 'MESSAGES.INDEX', 'MESSAGES.THREAD'];
       if (
         this.$route.name &&
-        this.$route.name.trim().toUpperCase() == "SEARCH"
+        routesNamesToHide.includes(this.$route.name.trim().toUpperCase())
       ) {
         return false;
       }

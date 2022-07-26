@@ -44,7 +44,10 @@
                     </v-btn>
                   </v-col>
                 </v-row>
-                <booking-sums :location="location" :bookingDetails="bookingDetails" />
+                <booking-sums
+                  :location="location"
+                  :bookingDetails="bookingDetails"
+                />
               </v-card>
               <location-renter-card
                 v-model="bookingDetails"
@@ -89,7 +92,7 @@ export default {
     };
   },
   async created() {
-    this.$store.commit("Bookings/resetCurrentBooking");
+    // this.$store.commit("Bookings/resetCurrentBooking");
     await this.loadLocation();
   },
   computed: {
@@ -121,8 +124,7 @@ export default {
       this.loading = true;
       const location = await showLocation(this.$route.params.locationId.trim());
       this.$store.commit("Bookings/setCurrentBooking", {
-        location: location.data
-        ,
+        location: location.data,
         bookingDetails: this.bookingDetails,
       });
       this.loading = false;
@@ -133,7 +135,6 @@ export default {
     goToBookingRequest() {
       this.$router.push({
         name: "Bookings.Request",
-        
       });
     },
   },

@@ -40,11 +40,17 @@
         </p>
         <p>{{ addon.description }}</p>
       </div>
-      <div>
+      <v-card-actions>
+        <v-btn @click="$emit('goBack')" color="secondary" text depressed large>
+          <v-icon>mdi-arrow-left</v-icon>
+          <span class="mx-1"></span>
+          <span> back </span>
+        </v-btn>
+        <v-spacer></v-spacer>
         <v-btn color="success" depressed large @click="goNext">
           Continue
         </v-btn>
-      </div>
+      </v-card-actions>
     </v-card>
   </div>
 </template>
@@ -75,7 +81,7 @@ export default {
       return false;
     },
     toggleAddOn(add_on) {
-      console.log("before ", this.bookingDetails);
+      
       for (let i = 0; i < this.bookingDetails.addOns.length; i++) {
         if (
           this.bookingDetails.addOns[i].id.trim().toUpperCase() ==
@@ -85,7 +91,7 @@ export default {
           return;
         }
       }
-      console.log("mid ", this.bookingDetails);
+      
 
       this.bookingDetails.addOns.push({
         id: add_on.id,
@@ -94,7 +100,6 @@ export default {
         currency_code: add_on.currency_code,
         type: add_on.type, // type may be fixed of percentage
       });
-      console.log("after ", this.bookingDetails);
     },
   },
   computed: {

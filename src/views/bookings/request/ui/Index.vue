@@ -8,6 +8,7 @@
               <v-stepper-step
                 :complete="step > 1"
                 step="1"
+                :editable="step > 1"
                 :color="step > 1 ? 'success' : 'primary'"
               >
                 Activity Details
@@ -18,6 +19,7 @@
               <v-stepper-step
                 :complete="step > 2"
                 step="2"
+                :editable="step > 2"
                 :color="step > 2 ? 'success' : 'primary'"
               >
                 Add ones
@@ -29,6 +31,7 @@
                 :complete="step > 3"
                 step="3"
                 :color="step > 3 ? 'success' : 'primary'"
+                :editable="step > 3"
               >
                 Confirm and Pay
               </v-stepper-step>
@@ -38,6 +41,7 @@
               <v-stepper-content step="1" class="mx-4">
                 <activity-detail
                   @goNext="goNext"
+                  @goBack="goBack"
                   v-model="bookingDetails"
                   :location="location"
                 />
@@ -46,13 +50,14 @@
               <v-stepper-content step="2">
                 <add-ons
                   @goNext="goNext"
+                  @goBack="goBack"
                   v-model="bookingDetails"
                   :location="location"
                 />
               </v-stepper-content>
 
               <v-stepper-content step="3">
-                <confirm-and-pay />
+                <confirm-and-pay @goBack="goBack" />
               </v-stepper-content>
             </v-stepper-items>
           </v-stepper>
@@ -76,9 +81,14 @@ import Sugar from "sugar";
 import BookingShortDetailsCard from "./bookingShortDetailsCard.vue";
 import ActivityDetail from "./steps/ActivityDetails.vue";
 import AddOns from "./steps/AddOns.vue";
-import ConfirmAndPay from './steps/ConfirmAndPay.vue';
+import ConfirmAndPay from "./steps/ConfirmAndPay.vue";
 export default {
-  components: { ActivityDetail, BookingShortDetailsCard, AddOns, ConfirmAndPay },
+  components: {
+    ActivityDetail,
+    BookingShortDetailsCard,
+    AddOns,
+    ConfirmAndPay,
+  },
   props: {},
   data() {
     return {
@@ -120,6 +130,10 @@ export default {
   methods: {
     goNext() {
       ++this.step;
+      this.$vuetify.goTo(0);
+    },
+    goBack() {
+      --this.step;
       this.$vuetify.goTo(0);
     },
     diffInHours(startTime, endTime) {

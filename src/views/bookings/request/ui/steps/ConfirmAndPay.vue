@@ -50,7 +50,17 @@
       </div>
     </div>
     <div class="mt-6">
-      <v-btn color="success" depressed large @click="goNext"> Continue </v-btn>
+      <v-card-actions>
+        <v-btn @click="$emit('goBack')" color="secondary" text depressed large>
+          <v-icon>mdi-arrow-left</v-icon>
+          <span class="mx-1"></span>
+          <span> back </span>
+        </v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="success" depressed large @click="goNext">
+          Continue
+        </v-btn>
+      </v-card-actions>
     </div>
   </div>
 </template>

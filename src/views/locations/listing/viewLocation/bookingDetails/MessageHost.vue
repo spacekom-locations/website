@@ -39,7 +39,7 @@
         <v-col class="my-0 py-0">
           <v-checkbox
             label="My dates / times are flexible"
-            v-model="flexibleDate"
+            v-model="hasFlexibleDate"
             color="success"
             hide-details
           ></v-checkbox>
@@ -48,12 +48,20 @@
       <v-row class="my-0 py-0">
         <v-col class="my-0 py-0">
           <p class="subtitle-2">Message your host</p>
-          <v-textarea v-model="message" outlined auto-grow hide-details />
+          <v-textarea
+            :error-messages="messageErrors"
+            v-model="message"
+            outlined
+            auto-grow
+            :hide-details="messageErrors.length == 0"
+          />
         </v-col>
       </v-row>
       <v-row class="my-0 py-0">
         <v-col class="my-0 py-0 mt-4">
-          <v-btn color="success" block x-large depressed>Send a message</v-btn>
+          <v-btn @click="sendMessage" color="success" block x-large depressed>
+            Send a message
+          </v-btn>
         </v-col>
       </v-row>
     </v-card>
@@ -63,6 +71,7 @@
 <script>
 import UserAvatar from "@/components/user/UserAvatar.vue";
 import BookingInputs from "./BookingInputs.vue";
+import { createThread } from "@/api/messages";
 export default {
   components: { BookingInputs, UserAvatar },
   props: {
@@ -73,8 +82,9 @@ export default {
   },
   data() {
     return {
-      flexibleDate: false,
+      hasFlexibleDate: false,
       message: "",
+      messageErrors: [],
     };
   },
   created() {},
@@ -102,9 +112,31 @@ export default {
       },
     },
   },
-  watch: {
-    
+  methods: {
+    async sendMessage() {
+      this.messageErrors = [];
+      if (this.message.trim() == "") {
+        this.messageErrors.push("Write a message");
+        return;
+      }
+
+      const bookingInputs = {
+        crew: this.bookingDetails.selectedCrewRange,
+        activity: this.bookingDetails.selectedActivity,
+        dates: this.bookingDetails.selectedDates,
+      };
+
+      const response = await createThread(
+        this.message,
+        this.location.id,
+        JSON.stringify(bookingInputs),
+        this.hasFlexibleDate
+      );
+
+      console.log(response);
+    },
   },
+  watch: {},
 };
 </script>
 

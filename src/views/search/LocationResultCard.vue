@@ -3,7 +3,7 @@
     <v-card
       outlined
       flat
-      width="300px"
+      width="280px"
       :to="{
         name: 'Listing.Show',
         params: { locationId: location.id },

@@ -50,8 +50,11 @@ export default {
   },
   methods: {
     getNow: function () {
-      if (this.intervalId) {
-        console.log("has interval");
+      const intervalTypes = ["relative", "relative-to", "relativeto"];
+      if (
+        this.intervalId &&
+        intervalTypes.includes(this.type.trim().toLowerCase())
+      ) {
         if (Sugar.Date.isBefore(Sugar.Date(this.date), "before 1 minute")) {
           window.clearInterval(this.intervalId);
           this.intervalId = setInterval(this.getNow, 1000 * 60);

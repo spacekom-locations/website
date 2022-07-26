@@ -56,7 +56,7 @@ export default {
           },
         });
       }
-      console.log(markers);
+      
       return markers;
     },
     stylesConfig() {

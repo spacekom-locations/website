@@ -156,7 +156,7 @@ export default {
       for (let fee of this.bookingDetails.addOns) {
         price += fee.amount;
       }
-      console.log(price);
+      
       return price;
     },
     totalHours() {

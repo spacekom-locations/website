@@ -22,7 +22,9 @@ Vue.use(VueGoogleMaps, {
   load: {
     // key: "AIzaSyCpd_oyIwSA8yZX0FRYn6Xs4BL3D3vBHsE", mine
     // key: "AIzaSyDf43lPdwlF98RCBsJOFNKOkoEjkwxb5Sc", random
-    key: "AIzaSyDG4ZwiYNLhoLMBgPjhqg9QQHGL37-dA78", // hassan's key
+    // AIzaSyDG4ZwiYNLhoLMBgPjhqg9QQHGL37-dA78 // hassan's key
+    // AIzaSyCIQJAdGUOAYDdsLGxjpxkUwxsVnNGnokU // spacekom key
+    key: "AIzaSyDG4ZwiYNLhoLMBgPjhqg9QQHGL37-dA78",
   },
   installComponents: true,
 });

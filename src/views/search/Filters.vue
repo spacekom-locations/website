@@ -47,11 +47,7 @@
         </gmap-autocomplete>
       </v-col>
       <v-col cols="2" style="border-left: 1px solid #d2d2d2 !important">
-        <v-btn color="success" text class="mt-2" large>
-          <v-icon>mdi-filter-variant</v-icon>
-          <span class="mx-1S"></span>
-          <span>Filter</span>
-        </v-btn>
+        <filter-box />
       </v-col>
     </v-row>
     <v-row> </v-row>
@@ -59,7 +55,9 @@
 </template>
 
 <script>
+import FilterBox from './FilterBox.vue';
 export default {
+  components: { FilterBox },
   data: () => ({
     validActivities: [
       {
@@ -92,7 +90,7 @@ export default {
     setPlace(place) {
       this.address = place.name;
       this.submitFilterEvent();
-      console.log(place);
+      
     },
     submitFilterEvent() {
       this.$emit("filter", {
