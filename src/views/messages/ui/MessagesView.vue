@@ -45,114 +45,130 @@
           ></v-progress-circular>
         </div>
         <v-col>
-          <div
-            v-for="(message, index) of sortedMessages"
-            :key="message.id"
-            :class="[
-              'd-flex flex-row align-end my-2',
-              message.user_id == currentUser.id ? 'justify-end' : null,
-            ]"
-          >
-            <v-card
-              max-width="500px"
-              min-width="100px"
-              v-if="message.user_id == currentUser.id"
-              class="black--text mr-3 rounded-lg pa-2"
-              color="#4caf50CC"
-              flat
-              :style="
-                !sortedMessages[index + 1] ||
-                sortedMessages[index + 1].user_id != message.user_id
-                  ? 'border-bottom-right-radius: 0px !important'
-                  : ''
-              "
+          <v-container style="max-width: 700px">
+            <div
+              v-for="(message, index) of sortedMessages"
+              :key="message.id"
+              :class="[
+                'd-flex flex-row align-end my-2',
+                message.user_id == currentUser.id ? 'justify-end' : null,
+              ]"
             >
-              <v-card-text class="white--text subtitle-1">
-                {{ message.body }}
-                <span class="caption">
-                  <elegant-date
-                    :date="message.updated_at"
-                    format="%H:%M"
-                    type="format"
-                    class="mx-2"
-                  />
-                  <v-icon
-                    v-if="isMessageReadByTheParticipant(message.updated_at)"
-                    color="white"
-                    size="20"
-                  >
-                    mdi-check-all
-                  </v-icon>
-                </span>
-              </v-card-text>
-            </v-card>
+              <v-card
+                max-width="500px"
+                min-width="100px"
+                v-if="message.user_id == currentUser.id"
+                class="black--text mr-3 rounded-lg pa-2"
+                color="#4caf50CC"
+                flat
+                :style="
+                  !sortedMessages[index + 1] ||
+                  sortedMessages[index + 1].user_id != message.user_id
+                    ? 'border-bottom-right-radius: 0px !important'
+                    : ''
+                "
+              >
+                <v-card-text class="white--text subtitle-1">
+                  <p>
+                    <span class="subtitle-1 font-weight-bold">{{
+                      currentUser.name
+                    }}</span>
+                    <span class="mx-2"></span>
+                    <span class="caption">
+                      <elegant-date
+                        :date="message.updated_at"
+                        format="%I:%M %p"
+                        type="format"
+                      />
+                      <v-icon
+                        v-if="isMessageReadByTheParticipant(message.updated_at)"
+                        color="white"
+                        size="20"
+                        class="mx-2"
+                      >
+                        mdi-check-all
+                      </v-icon>
+                    </span>
+                  </p>
+                  {{ message.body }}
+                </v-card-text>
+              </v-card>
 
-            <user-avatar
-              :image="getParticipantById(message.user_id).avatar"
-              v-if="
-                !sortedMessages[index + 1] ||
-                sortedMessages[index + 1].user_id != message.user_id
-              "
-              :size="48"
-            />
-            <user-avatar v-else :size="48" style="opacity: 0" />
+              <user-avatar
+                :image="getParticipantById(message.user_id).avatar"
+                v-if="
+                  !sortedMessages[index + 1] ||
+                  sortedMessages[index + 1].user_id != message.user_id
+                "
+                :size="48"
+              />
+              <user-avatar v-else :size="48" style="opacity: 0" />
 
-            <v-card
-              max-width="500px"
-              min-width="100px"
-              v-if="message.user_id != currentUser.id"
-              class="black--text ml-3 rounded-lg pa-2"
-              color="#2196f3CC"
-              flat
-              :style="
-                !sortedMessages[index + 1] ||
-                sortedMessages[index + 1].user_id != message.user_id
-                  ? 'border-bottom-left-radius: 0px !important' : ''"
+              <v-card
+                max-width="500px"
+                min-width="100px"
+                v-if="message.user_id != currentUser.id"
+                class="black--text ml-3 rounded-lg pa-2"
+                color="#2196f3CC"
+                flat
+                :style="
+                  !sortedMessages[index + 1] ||
+                  sortedMessages[index + 1].user_id != message.user_id
+                    ? 'border-bottom-left-radius: 0px !important'
+                    : ''
+                "
+              >
+                <v-card-text class="white--text subtitle-1">
+                  <p>
+                    <span class="subtitle-1 font-weight-bold">{{
+                      getParticipantById(message.user_id).name
+                    }}</span>
+                    <span class="mx-2"></span>
+                    <span class="caption">
+                      <elegant-date
+                        :date="message.updated_at"
+                        format="%I:%M %p"
+                        type="format"
+                      />
+                      
+                    </span>
+                  </p>
+                  {{ message.body }}
+                </v-card-text>
+              </v-card>
+            </div>
+            <div
+              v-for="message in pendingMessages"
+              :key="`${message.body}_${uuid()}`"
+              :class="['d-flex flex-row align-center my-2 justify-end']"
             >
-              <v-card-text class="white--text subtitle-1">
-                <span class="caption">
-                  <elegant-date
-                    :date="message.updated_at"
-                    format="%H:%M"
-                    type="format"
-                    class="mx-2"
-                  />
-                </span>
-                {{ message.body }}
-              </v-card-text>
-            </v-card>
-          </div>
-          <div
-            v-for="message in pendingMessages"
-            :key="`${message.body}_${uuid()}`"
-            :class="['d-flex flex-row align-center my-2 justify-end']"
-          >
-            <v-progress-circular
-              color="success"
-              size="24"
-              indeterminate
-              class="mx-4"
-            ></v-progress-circular>
-            <v-card
-              max-width="500px"
-              min-width="100px"
-              class="black--text mr-3 rounded-xl pa-2"
-              color="#4caf5066"
-              flat
-            >
-              <v-card-text class="white--text subtitle-1">
-                {{ message.body }}
-              </v-card-text>
-            </v-card>
-            <user-avatar :image="currentUser.avatar" :size="48" />
-          </div>
+              <v-progress-circular
+                color="success"
+                size="24"
+                indeterminate
+                class="mx-4"
+              ></v-progress-circular>
+              <v-card
+                max-width="500px"
+                min-width="100px"
+                class="black--text mr-3 rounded-xl pa-2"
+                color="#4caf5066"
+                flat
+              >
+                <v-card-text class="white--text subtitle-1">
+                  {{ message.body }}
+                </v-card-text>
+              </v-card>
+              <user-avatar :image="currentUser.avatar" :size="48" />
+            </div>
+          </v-container>
         </v-col>
       </v-row>
-      <div class="message-input-box">
-        <v-container class="ma-0 pa-0">
+      <div class="message-input-box" style="background-color: #e4e4e455">
+        <v-container class="ma-0 pa-0 mx-auto" style="max-width: 700px">
           <v-row no-gutters>
             <v-col>
-              <v-card class="" flat>
+              <v-card class="" flat style="background-color: transparent">
                 <v-card-text>
                   <v-text-field
                     v-model="msg"
@@ -161,6 +177,7 @@
                     append-icon="mdi-send"
                     @click:append="send"
                     outlined
+                    style="background-color: white"
                     hide-details
                   ></v-text-field>
                 </v-card-text>

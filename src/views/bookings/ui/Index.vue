@@ -21,8 +21,20 @@
             :value="tab.id"
             :key="tab.id + index"
           >
+            <div v-if="loading" class="mt-12 pt-12">
+              <v-progress-linear
+                rounded
+                :indeterminate="true"
+                color="success"
+                height="25"
+              ></v-progress-linear>
+            </div>
             <div class="mt-6 pa-4">
-              <v-card outlined class="pa-8 grey--text" active-class="">
+              <v-card
+                outlined
+                class="pa-8 grey--text"
+                v-if="tab.bookings.length == 0 && loading == false"
+              >
                 <v-card-title>
                   <v-spacer></v-spacer>
                   {{ tab.name }}
@@ -30,10 +42,15 @@
                 </v-card-title>
                 <v-card-title>
                   <v-spacer></v-spacer>
-                  you have no locations here
+                  you have no bookings here
                   <v-spacer></v-spacer>
                 </v-card-title>
               </v-card>
+              <booking-view
+                :bookingData="booking"
+                v-for="(booking, index) of tab.bookings"
+                :key="booking.id + index"
+              />
             </div>
           </v-tab-item>
         </v-tabs-items>
@@ -43,24 +60,40 @@
 </template>
 
 <script>
+import { indexBookings } from "@/api/bookings";
+import BookingView from "./BookingView.vue";
+
 export default {
+  components: { BookingView },
   data: () => ({
     loading: false,
     tab: "Up Coming",
-    locations: [],
+    bookings: [],
   }),
   computed: {
     tabs() {
       return [
-        { id: "UP_COMING", name: "Up Coming" },
-        { id: "COMPLETED", name: "Completed" },
-        { id: "CANCELED", name: "Cancelled" },
-        { id: "ALL", name: "All" },
+        { id: "UP_COMING", name: "Up Coming", bookings: this.bookings },
+        { id: "COMPLETED", name: "Completed", bookings: [] },
+        { id: "CANCELED", name: "Cancelled", bookings: [] },
+        { id: "ALL", name: "All", bookings: [] },
       ];
     },
   },
   created() {
-    window.alert("API error");
+    this.loadBookings();
+  },
+  methods: {
+    async loadBookings() {
+      this.loading = true;
+      try {
+        const response = await indexBookings();
+        this.bookings = response.data;
+      } catch (error) {
+        console.log(error);
+      }
+      this.loading = false;
+    },
   },
 };
 </script>

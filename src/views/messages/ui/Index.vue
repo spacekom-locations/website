@@ -34,6 +34,7 @@
             <v-row class="fill-height pa-0 ma-0">
               <v-col
                 cols="3"
+                xl="2"
                 class="pa-0 ma-0"
                 style="border-right: 1px solid #d2d2d2 !important"
               >
@@ -96,6 +97,7 @@
               </v-col>
               <v-col
                 cols="3"
+                xl="2"
                 class="pa-0 ma-0"
                 style="border-left: 1px solid #d2d2d2 !important"
               >
