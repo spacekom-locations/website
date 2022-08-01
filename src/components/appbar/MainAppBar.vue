@@ -25,6 +25,40 @@
         </span>
       </div>
     </router-link>
+    <span class="mx-2"></span>
+    <v-menu rounded="b-xl" offset-y v-if="bg.toLowerCase() != `transparent`">
+      <template v-slot:activator="{ attrs, on }">
+        <v-btn color="secondary" text v-bind="attrs" v-on="on" large>
+          <span class="font-weight-black">
+            {{
+              $route.name == "Search" && $route.query.activity
+                ? $route.query.activity
+                : "Search"
+            }}
+          </span>
+          <v-icon size="18">mdi-chevron-down</v-icon>
+        </v-btn>
+      </template>
+
+      <v-list >
+        <v-list-item
+          class="primary--text"
+          v-for="activity in validActivities"
+          :key="activity.id"
+          link
+          route
+          :to="{
+            name: 'Search',
+            query: {
+              activity: activity.id,
+            },
+          }"
+          exact
+        >
+          <v-list-item-title v-text="activity.value"></v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
 
     <v-spacer></v-spacer>
 
@@ -77,6 +111,24 @@ export default {
   components: { Profile, Notifications },
   data: () => ({
     bg: "transparent",
+    validActivities: [
+      {
+        id: "PRODUCTION",
+        value: "Production",
+        description: "Film and photo shoots ",
+      },
+      {
+        id: "EVENT",
+        value: "Event",
+        description: "Baby showers, wedding receptions, art exhibits ",
+      },
+      {
+        id: "MEETING",
+        value: "Meeting",
+        description: "Workshops, trainings, conferences ",
+      },
+    ],
+    activity: null,
   }),
   computed: {
     isAuthenticated() {

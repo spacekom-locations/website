@@ -23,10 +23,12 @@
           <v-col>
             <div class="sticky-top">
               <v-card outlined class="pa-4">
-                <location-booking-inputs
-                  v-model="bookingDetails"
-                  :location="location"
-                />
+                <v-card class="pa-0 ma-0" flat :disabled="location.has_active_booking">
+                  <location-booking-inputs
+                    v-model="bookingDetails"
+                    :location="location"
+                  />
+                </v-card>
                 <v-row class="mt-0 pt-0">
                   <v-col>
                     <v-btn
@@ -39,9 +41,17 @@
                         location.user.id == $store.getters['User/user'].id
                       "
                       @click="goToBookingRequest"
+                      v-if="!location.has_active_booking"
                     >
                       Request Booking
                     </v-btn>
+                    <v-card outlined>
+                      <v-card-title>
+                        <v-spacer></v-spacer>
+                        Booking in progress
+                        <v-spacer></v-spacer>
+                      </v-card-title>
+                    </v-card>
                   </v-col>
                 </v-row>
                 <booking-sums

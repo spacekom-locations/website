@@ -68,7 +68,10 @@ export default {
       required: true,
       type: Object,
       default() {
-        return {};
+        return {
+          images: [],
+          user: {}
+        };
       },
     },
   },

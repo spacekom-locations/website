@@ -39,7 +39,7 @@
       <v-row>
         <v-col>
           <v-btn
-            @click="showSendMessageDialog = true"
+            @click="openMessages"
             color="success"
             outlined
             large
@@ -94,8 +94,21 @@ export default {
       },
     },
   },
-  watch: {
-   
+  methods: {
+    openMessages() {
+      if (!this.location.has_active_messages_thread) {
+        this.showSendMessageDialog = true;
+        return;
+      }
+      if (this.location.thread) {
+        this.$router.push({
+          name: "Messages.Thread",
+          params: {
+            id: this.location.thread.id,
+          },
+        });
+      }
+    },
   },
 };
 </script>

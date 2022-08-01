@@ -30,12 +30,12 @@
           <user-avatar :size="120" :image="location.user.avatar" />
         </v-col>
       </v-row>
-      <v-row class="my-0 py-0">
+      <v-row class="my-0 py-0" v-if="!location.has_active_booking">
         <v-col class="my-0 py-0">
           <booking-inputs />
         </v-col>
       </v-row>
-      <v-row class="my-0 py-0">
+      <v-row class="my-0 py-0" v-if="!location.has_active_booking">
         <v-col class="my-0 py-0">
           <v-checkbox
             label="My dates / times are flexible"

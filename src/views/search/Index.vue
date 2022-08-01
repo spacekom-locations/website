@@ -2,7 +2,7 @@
   <div>
     <map-view :locations="locations" v-if="showMap" width="33.3333vw" />
     <v-card fill-height flat style="min-height: 95vh">
-      <div class="sticky-top" style="z-index: 1; background-color: white;">
+      <div class="sticky-top" style="z-index: 1; background-color: white">
         <v-card-text class="pa-0 ma-0">
           <filters @filter="filter" />
         </v-card-text>
@@ -110,16 +110,22 @@ export default {
       this.loading = false;
     },
     filter(q) {
-      this.locations = [];
       this.address = q.address;
       this.activity = q.activity;
       this.query = q.query;
 
-      this.$router.replace({
-        name: "Search",
-        query: q,
-      });
-      this.loadResult();
+      this.$router
+        .replace({
+          name: "Search",
+          query: q,
+        })
+        .then(() => {
+          this.locations = [];
+          this.loadResult();
+        })
+        .catch(()=>{
+          console.log('no change the same route')
+        });
     },
   },
 };

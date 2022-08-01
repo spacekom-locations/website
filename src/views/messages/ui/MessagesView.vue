@@ -48,7 +48,7 @@
           <v-container style="max-width: 700px">
             <div
               v-for="(message, index) of sortedMessages"
-              :key="message.id"
+              :key="`${message.id}_${uuid()}`"
               :class="[
                 'd-flex flex-row align-end my-2',
                 message.user_id == currentUser.id ? 'justify-end' : null,
@@ -75,11 +75,7 @@
                     }}</span>
                     <span class="mx-2"></span>
                     <span class="caption">
-                      <elegant-date
-                        :date="message.updated_at"
-                        format="%I:%M %p"
-                        type="format"
-                      />
+                      {{ message.updated_at | timeFormat }}
                       <v-icon
                         v-if="isMessageReadByTheParticipant(message.updated_at)"
                         color="white"
@@ -125,12 +121,7 @@
                     }}</span>
                     <span class="mx-2"></span>
                     <span class="caption">
-                      <elegant-date
-                        :date="message.updated_at"
-                        format="%I:%M %p"
-                        type="format"
-                      />
-                      
+                      {{ message.updated_at | timeFormat }}
                     </span>
                   </p>
                   {{ message.body }}
@@ -173,7 +164,7 @@
                   <v-text-field
                     v-model="msg"
                     placeholder="Type Something"
-                    @keypress.enter="send"
+                    @keyup.enter="send"
                     append-icon="mdi-send"
                     @click:append="send"
                     outlined
@@ -194,11 +185,11 @@
 import { sendMessage, showThread } from "@/api/messages";
 import UserAvatar from "@/components/user/UserAvatar.vue";
 import { v4 as uuidv4 } from "uuid";
-import ElegantDate from "@/components/ElegantDate.vue";
 import moment from "moment";
+import { mainEventBus } from "@/main";
 
 export default {
-  components: { UserAvatar, ElegantDate },
+  components: { UserAvatar },
   props: {},
   data() {
     return {
@@ -213,6 +204,10 @@ export default {
   },
   async created() {
     await this.loadMessages();
+    mainEventBus.$on(
+      "message-for-thread-" + this.thread.id,
+      this.showNewMessage
+    );
   },
   computed: {
     currentUser() {
@@ -229,6 +224,12 @@ export default {
     },
   },
   methods: {
+    showNewMessage(message) {
+      let messages = [...(this.thread.messages || [])];
+      messages.push(message);
+      this.getThreadParticipant().last_read = new Date();
+      this.thread.messages = [...messages];
+    },
     isMessageReadByTheParticipant(messageDate) {
       return moment(messageDate).isBefore(
         this.getThreadParticipant().last_read

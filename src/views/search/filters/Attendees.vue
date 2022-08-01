@@ -29,8 +29,8 @@ export default {
   },
   data() {
     return {
-      selectedRange: null,
-      ranges: [null, "1 - 5", "6 - 15", "16 - 30", "31 - 45", "46 - 60", "60+"],
+      selectedRange: "60+",
+      ranges: ["1 - 5", "6 - 15", "16 - 30", "31 - 45", "46 - 60", "60+"],
     };
   },
   created() {
@@ -45,6 +45,7 @@ export default {
     selectedRange(newValue) {
       if (newValue != this.value) {
         this.$emit("input", newValue);
+        this.$emit("update-filter", newValue);
       }
     },
   },

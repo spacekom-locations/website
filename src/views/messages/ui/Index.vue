@@ -77,10 +77,20 @@
                         </v-list-item-avatar>
 
                         <v-list-item-content>
-                          <v-list-item-title
-                            v-html="getThreadUser(thread).name"
-                            class="font-weight-bold"
-                          ></v-list-item-title>
+                          <v-list-item-title class="font-weight-bold">
+                            <v-badge
+                              :color="
+                                countThreadNewMessages(thread.id)
+                                  ? 'green'
+                                  : 'transparent'
+                              "
+                              inline
+                              x-large
+                              :content="countThreadNewMessages(thread.id)"
+                            >
+                              {{ getThreadUser(thread).name }}
+                            </v-badge>
+                          </v-list-item-title>
                           <v-list-item-subtitle>
                             {{ thread.location.title }}
                           </v-list-item-subtitle>
@@ -133,6 +143,7 @@
 import { loadThreads } from "@/api/messages/index";
 import UserAvatar from "@/components/user/UserAvatar.vue";
 import LocationDetails from "@/views/messages/ui/LocationDetails.vue";
+import { mainEventBus } from "@/main";
 
 export default {
   components: { UserAvatar, LocationDetails },
@@ -141,7 +152,10 @@ export default {
     selectedThread: {},
     loading: false,
     messages: [],
+    newMessages: [],
     msg: null,
+    messagesSoundURL:
+      "https://proxy.notificationsounds.com/notification-sounds/elegant-notification-sound/download/file-sounds-1233-elegant.mp3",
   }),
   computed: {
     location() {
@@ -159,11 +173,38 @@ export default {
         },
       });
     }
+    mainEventBus.$on("new-messenger-message", this.setNewMessage);
   },
 
   methods: {
-    setSelectedThread(thread){
-      
+    setNewMessage(message) {
+      if (this.selectedThread && this.selectedThread.id != message.thread_id) {
+        this.newMessages.push(message);
+      }
+      mainEventBus.$emit("message-for-thread-" + message.thread_id, message);
+      this.playMessagesSound();
+    },
+    playMessagesSound() {
+      var audio = new Audio(this.messagesSoundURL);
+      audio.play();
+    },
+    countThreadNewMessages(threadId) {
+      let sum = 0;
+      for (let i = 0; i < this.newMessages.length; i++) {
+        if (this.newMessages[i].thread_id == threadId) {
+          ++sum;
+        }
+      }
+      return sum;
+    },
+    removeThreadNewMessages(threadId) {
+      for (let i = 0; i < this.newMessages.length; i++) {
+        if (this.newMessages[i].thread_id == threadId) {
+          this.newMessages.splice(i, 1);
+        }
+      }
+    },
+    setSelectedThread(thread) {
       this.selectedThread = thread;
     },
     getThreadUser(thread) {

@@ -38,6 +38,10 @@ import { mainEventBus } from "./main";
 import userConfig from "./config/index";
 import Sugar from "sugar";
 
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
+import axios from 'axios';
+
 export default {
   name: "App",
 
@@ -56,7 +60,7 @@ export default {
       return true;
     },
     showFooter() {
-      const routesNamesToHide = ["SEARCH", 'MESSAGES.INDEX', 'MESSAGES.THREAD'];
+      const routesNamesToHide = ["SEARCH", "MESSAGES.INDEX", "MESSAGES.THREAD"];
       if (
         this.$route.name &&
         routesNamesToHide.includes(this.$route.name.trim().toUpperCase())
@@ -67,6 +71,32 @@ export default {
     },
   },
   methods: {
+    initializePusher() {
+      window.Pusher = Pusher;
+      window.Echo = new Echo({
+        broadcaster: "pusher",
+        key: "481e981e60a0068c5f6c",
+        cluster: "ap2",
+        encrypted: true,
+        authEndpoint: axios.defaults.baseURL + '/broadcasting/auth',
+        auth: {
+          headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${this.$store.getters["User/authorizationToken"]}`,
+          },
+        },
+      });
+
+      if (!this.$store.getters["User/isAuthenticated"]) {
+        return false;
+      }
+
+      let user = this.$store.getters["User/user"];
+
+      window.Echo.private(`for_user_${user.id}`).listen("MessageSent", (e) => {
+        mainEventBus.$emit('new-messenger-message', e.message);
+      });
+    },
     changeLocale(locale) {
       this.$i18n.locale = locale;
       this.$vuetify.rtl = this.$t("direction") == "rtl";
@@ -155,6 +185,7 @@ export default {
     },
   },
   created() {
+    this.initializePusher();
     this.setMainEventBusListener();
     userConfig.loadLocale();
     userConfig.loadTheme(this.$vuetify);

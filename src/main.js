@@ -53,6 +53,14 @@ Vue.use(GmapVue, {
   },
 });
 
+import moment from 'moment'
+
+Vue.filter('timeFormat', function(value) {
+  if (value) {
+    return moment(String(value)).format('hh:mm A')
+  }
+});
+
 const vm = new Vue({
   router,
   store,

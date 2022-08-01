@@ -4063,6 +4063,11 @@ klona@^2.0.4, klona@^2.0.5:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.5.tgz#d166574d90076395d9963aa7a928fabb8d76afbc"
   integrity sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ==
 
+laravel-echo@^1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/laravel-echo/-/laravel-echo-1.13.0.tgz#9955e773b2c66ab810ba9f5eb4c80dbfcbdd672e"
+  integrity sha512-KWcr9Sthr8DUfrFtCKNMGq4IRTmswW+Xu92eL1yH2V7/C/3XGOxrTgzTB98jnk423gy+1DMyaavnujG9HeY3Jg==
+
 launch-editor-middleware@^2.2.1:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/launch-editor-middleware/-/launch-editor-middleware-2.3.0.tgz#edd0ed45a46f5f1cf27540f93346b5de9e8c3be0"
@@ -5103,6 +5108,13 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
+pusher-js@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/pusher-js/-/pusher-js-7.3.0.tgz#0d4334bc67fb16b599cff7a1464016dfbd6d5658"
+  integrity sha512-N7uFRZGK6PKFfKd8e1aKsQ81OrilATGNhIbj42xJKmK+3zhstGBCQ110ZiF2nIngPTEKxQQqf15SJsVnQfNuqQ==
+  dependencies:
+    tweetnacl "^1.0.3"
+
 qs@6.10.3:
   version "6.10.3"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.3.tgz#d6cde1b2ffca87b5aa57889816c5f81535e22e8e"
@@ -5978,6 +5990,11 @@ tslib@^2.0.3:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.4.0.tgz#7cecaa7f073ce680a05847aa77be941098f36dc3"
   integrity sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==
+
+tweetnacl@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-1.0.3.tgz#ac0af71680458d8a6378d0d0d050ab1407d35596"
+  integrity sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

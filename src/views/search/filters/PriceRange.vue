@@ -19,6 +19,7 @@
       color="success"
       x-large
       :step="50"
+      @mouseup="$emit('update-filter')"
     >
     </v-range-slider>
   </v-card-text>
