@@ -17,4 +17,7 @@ export default {
       state.user.phone_number_verified_at != null
     );
   },
+  isHost(state) {
+    return state.isHost;
+  },
 };

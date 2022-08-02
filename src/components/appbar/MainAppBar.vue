@@ -40,7 +40,7 @@
         </v-btn>
       </template>
 
-      <v-list >
+      <v-list>
         <v-list-item
           class="primary--text"
           v-for="activity in validActivities"
@@ -138,12 +138,13 @@ export default {
       return ["HOME"];
     },
     quickAccessButtons() {
-      return [
-        { name: "Bookings", route: { name: "Bookings.Index" } },
-        { name: "Listing", route: { name: "Locations.Mine" } },
-        { name: "Messages", route: { name: "Messages.Index" } },
-        // { name: "Drive Bookings", route: { name: "Locations.Mine" } },
-      ];
+      const buttons = [];
+      buttons.push({ name: "Bookings", route: { name: "Bookings.Index" } });
+      if (this.$store.getters["User/isHost"]) {
+        buttons.push({ name: "Listing", route: { name: "Locations.Mine" } });
+      }
+      buttons.push({ name: "Messages", route: { name: "Messages.Index" } });
+      return buttons;
     },
   },
   mounted() {

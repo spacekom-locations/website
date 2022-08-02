@@ -2,13 +2,41 @@
   <v-container style="max-width: 1080px" class="mt-4">
     <v-row>
       <v-col>
+        <v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn
+            :color="$store.getters['User/isHost'] ? 'success' : 'primary'"
+            x-large
+            outlined
+            :loading="loading"
+            @click="$store.commit('User/toggleIsHost');loadBookings()"
+          >
+            <v-icon>mdi-account-switch</v-icon>
+            <span class="mx-2"></span>
+            {{
+              $store.getters["User/isHost"]
+                ? "Switch to renter"
+                : "Switch to host"
+            }}
+          </v-btn>
+          <v-spacer></v-spacer>
+        </v-card-title>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
         <v-tabs color="success" :loading="loading" v-model="tab">
           <v-tab
             :href="`#${tab.id}`"
             v-for="(tab, index) of tabs"
             :key="tab.id + index"
           >
-            <v-badge :content="0" :value="0" color="green" inline>
+            <v-badge
+              :content="tab.bookings.length"
+              :value="tab.bookings.length"
+              color="green"
+              inline
+            >
               <span class="mx-2">
                 {{ tab.name }}
               </span>
@@ -47,7 +75,7 @@
                 </v-card-title>
               </v-card>
               <booking-view
-                :bookingData="booking"
+                :value="booking"
                 v-for="(booking, index) of tab.bookings"
                 :key="booking.id + index"
               />
@@ -73,11 +101,34 @@ export default {
   computed: {
     tabs() {
       return [
-        { id: "UP_COMING", name: "Up Coming", bookings: this.bookings },
-        { id: "COMPLETED", name: "Completed", bookings: [] },
-        { id: "CANCELED", name: "Cancelled", bookings: [] },
-        { id: "ALL", name: "All", bookings: [] },
+        { id: "UP_COMING", name: "Up Coming", bookings: this.upComingBookings },
+        { id: "APPROVED", name: "Approved", bookings: this.approvedBookings },
+        {
+          id: "COMPLETED",
+          name: "Completed",
+          bookings: this.completedBookings,
+        },
+        { id: "DECLINED", name: "Cancelled", bookings: this.declinedBookings },
+        { id: "CANCELED", name: "Cancelled", bookings: this.cancelledBookings },
+        { id: "ALL", name: "All", bookings: this.bookings },
       ];
+    },
+    upComingBookings() {
+      return this.bookings.filter((item) => item.status == "PENDING");
+    },
+    approvedBookings() {
+      return this.bookings.filter((item) => item.status == "APPROVED");
+    },
+    declinedBookings() {
+      return this.bookings.filter((item) => item.status == "DECLINED");
+    },
+    completedBookings() {
+      return this.bookings.filter(
+        (item) => item.status == "COMPLETED" || item.status == "PAID"
+      );
+    },
+    cancelledBookings() {
+      return this.bookings.filter((item) => item.status == "CANCELED");
     },
   },
   created() {
@@ -85,10 +136,19 @@ export default {
   },
   methods: {
     async loadBookings() {
+      this.bookings = [];
       this.loading = true;
       try {
         const response = await indexBookings();
         this.bookings = response.data;
+        for (let booking of this.bookings) {
+          if (booking.dates) booking.dates = JSON.parse(booking.dates);
+          if (booking.addons) booking.addons = JSON.parse(booking.addons);
+          if (booking.custom_fees)
+            booking.custom_fees = JSON.parse(booking.custom_fees);
+          if (booking.system_fees)
+            booking.system_fees = JSON.parse(booking.system_fees);
+        }
       } catch (error) {
         console.log(error);
       }

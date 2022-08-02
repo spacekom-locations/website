@@ -20,34 +20,19 @@
     <v-card outlined class="py-6 px-8" :loading="loading">
       <v-row class="my-0 py-0">
         <v-col cols="8">
-          <p class="headline">Send a message to {{ location.user.name }}</p>
+          <p class="headline">Send a message to {{ user.name }}</p>
           <p class="grey--text">
-            Let your host know a bit about you, your activity, and how you plan
+            Let the renter know a bit about you, your activity, and how you plan
             to use the space
           </p>
         </v-col>
         <v-col class="text-right">
-          <user-avatar :size="120" :image="location.user.avatar" />
-        </v-col>
-      </v-row>
-      <v-row class="my-0 py-0" v-if="!location.has_active_booking">
-        <v-col class="my-0 py-0">
-          <booking-inputs />
-        </v-col>
-      </v-row>
-      <v-row class="my-0 py-0" v-if="!location.has_active_booking">
-        <v-col class="my-0 py-0">
-          <v-checkbox
-            label="My dates / times are flexible"
-            v-model="hasFlexibleDate"
-            color="success"
-            hide-details
-          ></v-checkbox>
+          <user-avatar :size="120" :image="user.avatar" />
         </v-col>
       </v-row>
       <v-row class="my-0 py-0">
         <v-col class="my-0 py-0">
-          <p class="subtitle-2">Message your host</p>
+          <p class="subtitle-2">Message the renter</p>
           <v-textarea
             :error-messages="messageErrors"
             v-model="message"
@@ -77,19 +62,20 @@
 
 <script>
 import UserAvatar from "@/components/user/UserAvatar.vue";
-import BookingInputs from "./BookingInputs.vue";
-import { createThread } from "@/api/messages";
+import { createThreadFromBooking } from "@/api/messages";
 export default {
-  components: { BookingInputs, UserAvatar },
+  components: { UserAvatar },
   props: {
     show: {
       type: Boolean,
       default: false,
     },
+    booking: {
+      required: true,
+    },
   },
   data() {
     return {
-      hasFlexibleDate: false,
       message: "",
       messageErrors: [],
       loading: false,
@@ -97,50 +83,23 @@ export default {
   },
   created() {},
   computed: {
-    bookingDetails: {
-      get() {
-        return this.$store.getters["Bookings/currentBooking"].bookingDetails;
-      },
-      set(value) {
-        this.$store.commit("Bookings/setCurrentBooking", {
-          location: this.location,
-          bookingDetails: value,
-        });
-      },
-    },
-    location: {
-      get() {
-        return this.$store.getters["Bookings/currentBooking"].location;
-      },
-      set(value) {
-        this.$store.commit("Bookings/setCurrentBooking", {
-          location: value,
-          bookingDetails: this.bookingDetails,
-        });
-      },
+    user() {
+      return this.booking.user;
     },
   },
   methods: {
     async sendMessage() {
       this.messageErrors = [];
+
       if (this.message.trim() == "") {
         this.messageErrors.push("Write a message");
         return;
       }
-
       this.loading = true;
-      const bookingInputs = {
-        crew: this.bookingDetails.selectedCrewRange,
-        activity: this.bookingDetails.selectedActivity,
-        dates: this.bookingDetails.selectedDates,
-      };
-
       try {
-        const response = await createThread(
-          this.message,
-          this.location.id,
-          JSON.stringify(bookingInputs),
-          this.hasFlexibleDate
+        const response = await createThreadFromBooking(
+          this.booking.id,
+          this.message
         );
         this.$router.push({
           name: "Messages.Thread",

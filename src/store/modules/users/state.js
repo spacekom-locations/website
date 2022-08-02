@@ -1,5 +1,6 @@
 export default {
   isAuthenticated: false,
   user: null,
-  authorizationToken: null
+  authorizationToken: null,
+  isHost: false,
 };

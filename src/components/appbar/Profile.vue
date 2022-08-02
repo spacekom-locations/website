@@ -24,11 +24,7 @@
           <v-list-item-group color="primary">
             <v-list-item disabled>
               <v-list-item-avatar size="65">
-                <user-avatar
-                  
-                  :size="65"
-                  :image="userAvatarImage"
-                />
+                <user-avatar :size="65" :image="userAvatarImage" />
               </v-list-item-avatar>
 
               <v-list-item-content>
@@ -44,7 +40,7 @@
         <v-divider></v-divider>
 
         <v-list class="mx-2" rounded>
-          <v-list-item-group color="primary" >
+          <v-list-item-group color="primary">
             <v-list-item
               v-for="(route, index) of routes"
               :key="index"
@@ -56,6 +52,24 @@
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title>{{ route.text }}</v-list-item-title>
+              </v-list-item-content>
+              <v-list-item-icon>
+                <v-icon size="36">mdi-chevron-right</v-icon>
+              </v-list-item-icon>
+            </v-list-item>
+            <v-list-item
+              @click="$store.commit('User/toggleIsHost')"
+              v-if="$store.getters['User/isAuthenticated']"
+            >
+              <v-list-item-icon>
+                <v-icon size="36">mdi-account-switch</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{
+                  $store.getters["User/isHost"]
+                    ? "Switch to renter"
+                    : "Switch to host"
+                }}</v-list-item-title>
               </v-list-item-content>
               <v-list-item-icon>
                 <v-icon size="36">mdi-chevron-right</v-icon>
@@ -98,7 +112,7 @@ export default {
       return this.$store.getters["User/user"].avatar;
     },
     routes() {
-      return [
+      const routes = [
         {
           text: "My Profile",
           icon: "mdi-account-circle-outline",
@@ -116,8 +130,17 @@ export default {
             name: "Account.Settings",
           },
         },
-        { text: "Hosting Guid", icon: "mdi-help-box", route: "/support" },
       ];
+
+      if (this.$store.getters["User/isHost"]) {
+        routes.push({
+          text: "Hosting Guid",
+          icon: "mdi-help-box",
+          route: "/support",
+        });
+      }
+
+      return routes;
     },
   },
 };

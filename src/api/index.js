@@ -3,15 +3,23 @@ import { responseCodes } from "./responseCodes";
 import router from "../router/index";
 import store from "../store";
 
-
 export const HTTP_METHOD_GET = "GET";
 export const HTTP_METHOD_POST = "POST";
 export const HTTP_METHOD_DELETE = "DELETE";
 export const HTTP_METHOD_PUT = "PUT";
 
 export default {
-  async makeAPIRequest(method, url, data, params) {
-    const requestConfiguration = { method, url, data, params };
+  async makeAPIRequest(method, url, data, params, headers) {
+    if (!headers) {
+      headers = {};
+    }
+    headers = Object.assign(
+      {
+        "is-host": store.getters["User/isHost"],
+      },
+      headers
+    );
+    const requestConfiguration = { method, url, data, params, headers };
 
     try {
       const response = await axios.request(requestConfiguration);
@@ -31,7 +39,7 @@ export default {
           store.dispatch("User/logout");
           router.push({
             name: "Authenticate",
-            query: { action: 'login', next: router.history.current.name },
+            query: { action: "login", next: router.history.current.name },
           });
           break;
         case responseCodes.HTTP_FORBIDDEN:

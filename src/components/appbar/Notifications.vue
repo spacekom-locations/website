@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="false">
     <v-menu
       v-model="menu"
       :close-on-content-click="false"

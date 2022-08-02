@@ -4,7 +4,7 @@ export default [
     name: "Messages.Index",
     component: () =>
       import(
-        /* webpackChunkName: "add-location" */ "../views/messages/ui/Index.vue"
+        /* webpackChunkName: "messages-index" */ "../views/messages/ui/Index.vue"
       ),
     children: [
       {
@@ -12,7 +12,7 @@ export default [
         name: "Messages.Thread",
         component: () =>
           import(
-            /* webpackChunkName: "add-location" */ "../views/messages/ui/MessagesView.vue"
+            /* webpackChunkName: "messages-thread" */ "../views/messages/ui/MessagesView.vue"
           ),
       },
     ],

@@ -1,6 +1,25 @@
 <template>
   <div>
-    <v-card class="pa-0 mb-12" style="border-top: 8px solid green">
+    <message-renter
+      :show="showSendMessageDialog"
+      :booking="bookingData"
+      @close="showSendMessageDialog = false"
+    />
+    <v-snackbar
+      v-model="showSuccessSnackbar"
+      color="success"
+      top
+      center
+      multi-line
+    >
+      {{ successSnackbarMessage }}
+      <template v-slot:action="{ attrs }">
+        <v-btn dark icon v-bind="attrs" @click="showSuccessSnackbar = false">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <v-card class="pa-0 mb-12" :style="`border-top: 8px solid ${cardColor}`">
       <v-card-text class="pa-0">
         <v-row>
           <v-col cols="12" md="4">
@@ -43,7 +62,9 @@
                   <user-avatar :size="72" :image="user.avatar" />
                 </router-link>
 
-                <span class="font-weight-bold mx-4 my2 d-inline-block black--text">
+                <span
+                  class="font-weight-bold mx-4 my2 d-inline-block black--text"
+                >
                   <router-link
                     :to="{
                       name: 'UserProfile',
@@ -120,43 +141,43 @@
                   </v-row>
                   <v-row
                     class="py-0 my-2"
-                    v-for="(fee, index) of bookingData.addons"
-                    :key="`addon_fee_${index}_${fee.amount}`"
+                    v-for="(addonFee, index) of bookingData.addons"
+                    :key="`addon_fee_${index}_${addonFee.amount}`"
                   >
-                    <v-col class="py-0 my-0"> {{ fee.name }} </v-col>
+                    <v-col class="py-0 my-0"> {{ addonFee.name }} </v-col>
                     <v-col class="py-0 my-0">
                       {{
                         $t(
-                          `models.location.currencies.${fee.currency_code}.symbol`
-                        ) + fee.amount.toLocaleString()
+                          `models.location.currencies.${addonFee.currency_code}.symbol`
+                        ) + addonFee.amount.toLocaleString()
                       }}
                     </v-col>
                   </v-row>
                   <v-row
                     class="py-0 my-2"
-                    v-for="(fee, index) of bookingData.custom_fees"
-                    :key="`custom_fee_${index}_${fee.amount}`"
+                    v-for="(customFee, index) of bookingData.custom_fees"
+                    :key="`custom_fee_${index}_${customFee.amount}`"
                   >
-                    <v-col class="py-0 my-0"> {{ fee.name }} </v-col>
+                    <v-col class="py-0 my-0"> {{ customFee.name }} </v-col>
                     <v-col class="py-0 my-0">
                       {{
                         $t(
-                          `models.location.currencies.${fee.currency_code}.symbol`
-                        ) + fee.amount.toLocaleString()
+                          `models.location.currencies.${customFee.currency_code}.symbol`
+                        ) + customFee.amount.toLocaleString()
                       }}
                     </v-col>
                   </v-row>
                   <v-row
                     class="py-0 my-2"
-                    v-for="(fee, index) of bookingData.system_fees"
-                    :key="`system_fee_${index}_${fee.amount}`"
+                    v-for="(systemFee, index) of bookingData.system_fees"
+                    :key="`system_fee_${index}_${systemFee.amount}`"
                   >
-                    <v-col class="py-0 my-0"> {{ fee.name }} </v-col>
+                    <v-col class="py-0 my-0"> {{ systemFee.name }} </v-col>
                     <v-col class="py-0 my-0">
                       {{
                         $t(
-                          `models.location.currencies.${fee.currency_code}.symbol`
-                        ) + fee.amount.toLocaleString()
+                          `models.location.currencies.${systemFee.currency_code}.symbol`
+                        ) + systemFee.amount.toLocaleString()
                       }}
                     </v-col>
                   </v-row>
@@ -173,7 +194,7 @@
                     {{
                       $t(
                         `models.location.currencies.${location.currency_code}.symbol`
-                      ) + totalPrice.toLocaleString()
+                      ) + (totalPrice - totalSystemFees).toLocaleString()
                     }}
                   </v-col>
                 </v-row>
@@ -185,7 +206,12 @@
                     {{
                       $t(
                         `models.location.currencies.${location.currency_code}.symbol`
-                      ) + (rentPrice - 0.15 * rentPrice).toLocaleString()
+                      ) +
+                      (
+                        totalPrice -
+                        totalSystemFees -
+                        0.15 * (totalPrice - totalSystemFees)
+                      ).toLocaleString()
                     }}
                   </v-col>
                 </v-row>
@@ -196,23 +222,45 @@
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions class="pa-3 py-4">
-        <v-btn color="secondary" large text>
+        <v-btn
+          color="secondary"
+          large
+          text
+          :disabled="declining || approving"
+          @click="showMessages"
+        >
           <v-icon>mdi-message-outline</v-icon>
           <span class="mx-1"></span>
           <span>Contact Renter</span>
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="error" large outlined>
-          <v-icon>mdi-cancel</v-icon>
-          <span class="mx-1"></span>
-          <span>Decline</span>
-        </v-btn>
-        <span class="mx-2"></span>
-        <v-btn color="success" large depressed>
-          <v-icon>mdi-check</v-icon>
-          <span class="mx-1"></span>
-          <span>Accept</span>
-        </v-btn>
+        <div v-if="$store.getters['User/user'].id == location.user_id">
+          <v-btn
+            color="error"
+            large
+            outlined
+            :loading="declining"
+            :disabled="approving"
+            @click="decline"
+          >
+            <v-icon>mdi-cancel</v-icon>
+            <span class="mx-1"></span>
+            <span>Decline</span>
+          </v-btn>
+          <span class="mx-2"></span>
+          <v-btn
+            color="success"
+            large
+            depressed
+            :loading="approving"
+            :disabled="declining"
+            @click="approve"
+          >
+            <v-icon>mdi-check</v-icon>
+            <span class="mx-1"></span>
+            <span>Accept</span>
+          </v-btn>
+        </div>
       </v-card-actions>
     </v-card>
   </div>
@@ -221,14 +269,46 @@
 <script>
 import UserAvatar from "@/components/user/UserAvatar.vue";
 import Sugar from "sugar";
+import api from "@/api";
+import MessageRenter from "./MessageRenter.vue";
 export default {
-  components: { UserAvatar },
+  components: { UserAvatar, MessageRenter },
   props: {
-    bookingData: {
+    value: {
       required: true,
     },
   },
+  data() {
+    return {
+      bookingData: {},
+      approving: false,
+      declining: false,
+      showSuccessSnackbar: false,
+      successSnackbarMessage: "",
+      showSendMessageDialog: false,
+    };
+  },
+  created() {
+    this.bookingData = this.value;
+  },
   computed: {
+    cardColor() {
+      switch (this.bookingData.status.toUpperCase()) {
+        case "PENDING":
+          return "blue";
+        case "APPROVED":
+          return "#2196f3";
+        case "DECLINED":
+          return "#f44336";
+        case "COMPLETED":
+        case "PAID":
+          return "green";
+        case "CANCELED":
+          return "red";
+        default:
+          return "blue";
+      }
+    },
     location() {
       return this.bookingData.location;
     },
@@ -285,6 +365,46 @@ export default {
     },
   },
   methods: {
+    async approve() {
+      this.approving = true;
+      try {
+        const response = await api.post(
+          `bookings/${this.bookingData.id}/approve`
+        );
+        this.bookingData.status = "APPROVED";
+        this.successSnackbarMessage = response.data.data.messages;
+        this.showSuccessSnackbar;
+      } catch (error) {
+        console.log(error);
+      }
+      this.approving = false;
+    },
+    async decline() {
+      this.declining = true;
+      try {
+        const response = await api.post(
+          `bookings/${this.bookingData.id}/decline`
+        );
+        this.bookingData.status = "DECLINED";
+        this.successSnackbarMessage = response.data.data.messages;
+        this.showSuccessSnackbar;
+      } catch (error) {
+        console.log(error);
+      }
+      this.declining = false;
+    },
+    showMessages() {
+      if (this.bookingData.location.has_active_messages_thread) {
+        this.$router.push({
+          name: "Messages.Thread",
+          params: {
+            id: this.bookingData.location.thread.id,
+          },
+        });
+        return;
+      }
+      this.showSendMessageDialog = true;
+    },
     getMediumDate(date) {
       if (!date) return;
       return new Sugar.Date(date).medium();
