@@ -45,7 +45,7 @@
                     >
                       Request Booking
                     </v-btn>
-                    <v-card outlined>
+                    <v-card outlined v-else>
                       <v-card-title>
                         <v-spacer></v-spacer>
                         Booking in progress
