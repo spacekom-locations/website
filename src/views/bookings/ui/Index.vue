@@ -9,12 +9,14 @@
             x-large
             outlined
             :loading="loading"
-            @click="$store.commit('User/toggleIsHost');loadBookings()"
+            @click="
+              $store.commit('User/toggleIsHost');
+            "
           >
             <v-icon>mdi-account-switch</v-icon>
             <span class="mx-2"></span>
             {{
-              $store.getters["User/isHost"]
+              isHost
                 ? "Switch to renter"
                 : "Switch to host"
             }}
@@ -130,6 +132,9 @@ export default {
     cancelledBookings() {
       return this.bookings.filter((item) => item.status == "CANCELED");
     },
+    isHost(){
+      return this.$store.getters['User/isHost'];
+    }
   },
   created() {
     this.loadBookings();
@@ -153,6 +158,11 @@ export default {
         console.log(error);
       }
       this.loading = false;
+    },
+  },
+  watch: {
+    isHost() {
+      this.loadBookings();
     },
   },
 };

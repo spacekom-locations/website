@@ -99,6 +99,22 @@
       <notifications
         :color="bg.toLowerCase() == 'transparent' ? 'white' : 'info'"
       />
+      <v-btn
+        large
+        :color="bg.toLowerCase() == 'transparent' ? 'orange' : 'orange'"
+        text
+        class="mx-1 orange--text"
+        @click="$store.commit('User/toggleIsHost')"
+      >
+        <v-icon>mdi-account-switch</v-icon>
+        <span class="mx-2">
+          {{
+            $store.getters["User/isHost"]
+              ? "Host"
+              : "Renter"
+          }}
+        </span>
+      </v-btn>
       <profile />
     </template>
   </v-app-bar>

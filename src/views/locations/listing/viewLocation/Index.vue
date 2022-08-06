@@ -11,8 +11,9 @@
     </v-card>
     <div v-else>
       <location-images-carousal :images="location.images" />
-      <v-container style="max-width: 1200px" class="py-8 my-8">
-        <v-row>
+      <v-container style="max-width: 1200px">
+        
+        <v-row class="my-2">
           <v-col cols="8">
             <location-head-short-details :location="location" />
             <location-details :location="location" class="mt-6" />
@@ -23,7 +24,11 @@
           <v-col>
             <div class="sticky-top">
               <v-card outlined class="pa-4">
-                <v-card class="pa-0 ma-0" flat :disabled="location.has_active_booking">
+                <v-card
+                  class="pa-0 ma-0"
+                  flat
+                  :disabled="location.has_active_booking"
+                >
                   <location-booking-inputs
                     v-model="bookingDetails"
                     :location="location"
@@ -139,6 +144,8 @@ export default {
       });
       this.loading = false;
     },
+
+    
     updateBookingDetails(newBookingDetails) {
       this.bookingDetails = newBookingDetails;
     },
