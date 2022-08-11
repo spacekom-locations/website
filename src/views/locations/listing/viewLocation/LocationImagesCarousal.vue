@@ -13,7 +13,7 @@
         @click="show"
       ></v-carousel-item>
     </v-carousel>
-    <v-container style="max-width: 1200px">
+    <!-- <v-container style="max-width: 1200px">
       <div>
         <v-btn color="success" large depressed @click="downloadImages">
           <v-icon>mdi-download</v-icon>
@@ -21,7 +21,7 @@
           <span> download images </span>
         </v-btn>
       </div>
-    </v-container>
+    </v-container> -->
     <div style="display: none">
       <img
         v-for="(image, i) in images"

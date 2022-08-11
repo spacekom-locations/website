@@ -5,6 +5,8 @@ import userRoutes from "./user";
 import locationRoutes from "./locations";
 import bookingsRoutes from "./bookings";
 import messagesRoutes from "./messages";
+import aboutUsRoutes from "./about";
+
 Vue.use(VueRouter);
 
 const mainRoutes = [
@@ -23,6 +25,7 @@ const mainRoutes = [
 
 const routes = [
   ...mainRoutes,
+  ...aboutUsRoutes,
   ...userRoutes,
   ...locationRoutes,
   ...bookingsRoutes,

@@ -10,7 +10,13 @@
           <v-col>
             <h2 class="subtitle-2">Company</h2>
             <div class="px-2 pt-2 body-2">
-              <p>About us</p>
+              <router-link
+                :to="{
+                  name: 'AboutUs.Index',
+                }"
+              >
+                <p>About us</p>
+              </router-link>
               <p>Brands</p>
               <p>Support</p>
               <p>Resources</p>

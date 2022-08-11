@@ -110,7 +110,7 @@ export default {
           name: "Completed",
           bookings: this.completedBookings,
         },
-        { id: "DECLINED", name: "Cancelled", bookings: this.declinedBookings },
+        { id: "DECLINED", name: "Declined", bookings: this.declinedBookings },
         { id: "CANCELED", name: "Cancelled", bookings: this.cancelledBookings },
         { id: "ALL", name: "All", bookings: this.bookings },
       ];

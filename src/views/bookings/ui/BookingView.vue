@@ -198,7 +198,7 @@
                     }}
                   </v-col>
                 </v-row>
-                <v-row class="py-0 my-2">
+                <v-row class="py-0 my-2" v-if='$store.getters["User/isHost"]'>
                   <v-col class="py-0 my-0 font-weight-bold">
                     Your net payout
                   </v-col>
@@ -222,19 +222,49 @@
       </v-card-text>
       <v-divider></v-divider>
       <v-card-actions class="pa-3 py-4">
+        <location-agreement :show="showAgreement" @close="showAgreement = false" />
         <v-btn
           color="secondary"
-          large
+          
+          outlined
+          :disabled="declining || approving"
+          @click="showAgreement = true"
+        >
+          <v-icon>mdi-file-outline</v-icon>
+          <span class="mx-1"></span>
+          <span>View Agreement</span>
+        </v-btn>
+        <v-btn
+          color="primary"
+          
           text
           :disabled="declining || approving"
           @click="showMessages"
         >
           <v-icon>mdi-message-outline</v-icon>
           <span class="mx-1"></span>
-          <span>Contact Renter</span>
+          <span
+            >Contact
+            {{ $store.getters["User/isHost"] ? "Renter" : "Host" }}</span
+          >
         </v-btn>
         <v-spacer></v-spacer>
-        <div v-if="$store.getters['User/user'].id == location.user_id">
+
+          <v-btn
+            color="error"
+            large
+            outlined
+            :loading="canceling"
+            :disabled="approving"
+            @click="cancel"
+             v-if="!$store.getters['User/isHost'] && bookingData.status =='PENDING'"
+          >
+            <v-icon>mdi-cancel</v-icon>
+            <span class="mx-1"></span>
+            <span>cancel</span>
+          </v-btn>
+          
+        
           <v-btn
             color="error"
             large
@@ -242,6 +272,7 @@
             :loading="declining"
             :disabled="approving"
             @click="decline"
+             v-if="$store.getters['User/isHost'] && bookingData.status =='PENDING'"
           >
             <v-icon>mdi-cancel</v-icon>
             <span class="mx-1"></span>
@@ -255,12 +286,27 @@
             :loading="approving"
             :disabled="declining"
             @click="approve"
+             v-if="$store.getters['User/isHost'] && bookingData.status =='PENDING'"
           >
             <v-icon>mdi-check</v-icon>
             <span class="mx-1"></span>
             <span>Accept</span>
           </v-btn>
-        </div>
+
+          <v-btn
+            color="success"
+            large
+            depressed
+            :loading="completing"
+            :disabled="declining"
+            @click="complete"
+             v-if="$store.getters['User/isHost'] && bookingData.status =='APPROVED'"
+          >
+            <v-icon>mdi-check</v-icon>
+            <span class="mx-1"></span>
+            <span>complete</span>
+          </v-btn>
+        
       </v-card-actions>
     </v-card>
   </div>
@@ -271,8 +317,9 @@ import UserAvatar from "@/components/user/UserAvatar.vue";
 import Sugar from "sugar";
 import api from "@/api";
 import MessageRenter from "./MessageRenter.vue";
+import LocationAgreement from './LocationAgreement.vue';
 export default {
-  components: { UserAvatar, MessageRenter },
+  components: { UserAvatar, MessageRenter, LocationAgreement },
   props: {
     value: {
       required: true,
@@ -283,9 +330,12 @@ export default {
       bookingData: {},
       approving: false,
       declining: false,
+      completing: false,
+      canceling: false,
       showSuccessSnackbar: false,
       successSnackbarMessage: "",
       showSendMessageDialog: false,
+      showAgreement: false,
     };
   },
   created() {
@@ -392,6 +442,34 @@ export default {
         console.log(error);
       }
       this.declining = false;
+    },
+    async complete() {
+      this.completing = true;
+      try {
+        const response = await api.post(
+          `bookings/${this.bookingData.id}/complete`
+        );
+        this.bookingData.status = "COMPLETED";
+        this.successSnackbarMessage = response.data.data.messages;
+        this.showSuccessSnackbar;
+      } catch (error) {
+        console.log(error);
+      }
+      this.completing = false;
+    },
+    async cancel() {
+      this.canceling = true;
+      try {
+        const response = await api.post(
+          `bookings/${this.bookingData.id}/cancel`
+        );
+        this.bookingData.status = "CANCELED";
+        this.successSnackbarMessage = response.data.data.messages;
+        this.showSuccessSnackbar;
+      } catch (error) {
+        console.log(error);
+      }
+      this.canceling = false;
     },
     showMessages() {
       if (this.bookingData.location.has_active_messages_thread) {

@@ -9,10 +9,10 @@
         need
       </p>
       <p class="my-6"></p>
-      <v-row v-for="j in 2" :key="j">
+      <v-row v-for="(row, index) of rows" :key="index">
         <v-col
-          v-for="i in 3"
-          :key="i"
+          v-for="(card, j) of row"
+          :key="j"
           cols="12"
           lg="4"
           md="4"
@@ -31,14 +31,14 @@
               class="ma-0 pa-0 rounded-lg category-card"
             >
               <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/house.jpg"
+                :src="card.image"
                 class="white--text pa-6"
                 gradient="to bottom, rgba(0,0,0,.3), rgba(0,0,0,.7)"
                 height="350px"
               >
                 <div>
                   <h1 style="height: 100px; overflow: visible">
-                    Houses under $100
+                    {{ card.text }}
                   </h1>
                   <div style="padding-top: 150px"></div>
                   <v-btn x-large align-end justify-start text color="white">
@@ -58,7 +58,44 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      rows: [
+        [
+          {
+            text: "Video shoot",
+            image: require("../../assets/Video_shoot_tile_v2.webp"),
+          },
+          {
+            text: "Photos shoot",
+            image: require("../../assets/photo_shoot.webp"),
+          },
+          {
+            text: "Meeting",
+            image: require("../../assets/meeting.jpeg"),
+          },
+        ],
+        [
+          {
+            text: "Workshop",
+            image: require("../../assets/workshop.jpg"),
+            
+          },
+          {
+            text: "Performance spaces",
+            image: require("../../assets/performance.jpg"),
+          },
+          {
+            text: "Pop-up",
+            image: require("../../assets/pop-up.jpeg"),
+            
+          },
+        ],
+      ],
+    };
+  },
+};
 </script>
 
 <style>
