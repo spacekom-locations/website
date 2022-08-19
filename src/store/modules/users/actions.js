@@ -9,7 +9,7 @@ export default {
     window.localStorage.setItem("authorizationToken", payload.token);
     window.localStorage.setItem("user", JSON.stringify(payload.user));
 
-    const isHost = Boolean(window.localStorage.getItem("isHost"));
+    const isHost = window.localStorage.getItem("isHost") === "true";
     if (isHost) {
       context.commit("setAsHost");
     } else {
