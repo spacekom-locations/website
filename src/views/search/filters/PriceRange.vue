@@ -2,12 +2,10 @@
   <v-card-text>
     <div class="d-flex flex-row justify-space-between">
       <span
-        >From: {{ $t(`models.location.currencies.USD.symbol`)
-        }}{{ price.range[0] }}</span
+        >From: AED{{ price.range[0] }}</span
       >
       <span
-        >To: {{ $t(`models.location.currencies.USD.symbol`)
-        }}{{ price.range[1] }}</span
+        >To: AED{{ price.range[1] }}</span
       >
     </div>
     <v-range-slider

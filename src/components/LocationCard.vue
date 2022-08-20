@@ -28,9 +28,7 @@
       </v-card-title>
       <v-card-text class="px-6">
         <span class="subtitle-2 black--text">
-          {{
-            $t(`models.location.currencies.${location.currency_code}.symbol`)
-          }}{{ location.pricing.ranges[0].prices.EVENT }}
+          AED {{ location.pricing.ranges[0].prices.EVENT }}
           /hr
         </span>
         <span class="font-weight-black mx-1">.</span>

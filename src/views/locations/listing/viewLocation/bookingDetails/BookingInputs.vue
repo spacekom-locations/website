@@ -3,9 +3,7 @@
     <v-row>
       <v-col>
         <span class="headline font-weight-bold">
-          {{
-            $t(`models.location.currencies.${location.currency_code}.symbol`)
-          }}
+          AED
           {{
             getRangeFromName(
               bookingDetails.selectedCrewRange
@@ -148,9 +146,7 @@
             <!-- HTML that describe how select should render items when the select is open -->
             {{ data.item.name }} people
             <v-spacer></v-spacer>
-            {{
-              $t(`models.location.currencies.${location.currency_code}.symbol`)
-            }}
+            AED
             {{
               data.item.prices[
                 bookingDetails.selectedActivity

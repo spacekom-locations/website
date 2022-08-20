@@ -13,8 +13,7 @@
       <v-col>
         <div class="subtitle-2 font-weight-bold mx-2">Price</div>
         <v-card-actions class="py-0 my-0 mb-1">
-          {{ $t(`models.location.currencies.${location.currency_code}.symbol`)
-          }}{{
+          AED {{
             getRangeFromName(
               bookingDetails.selectedCrewRange
                 ? bookingDetails.selectedCrewRange
@@ -24,7 +23,7 @@
           × {{ totalHours }} hours
           <v-spacer></v-spacer>
           {{
-            $t(`models.location.currencies.${location.currency_code}.symbol`) +
+            'AED' +
             rentPrice.toLocaleString()
           }}
         </v-card-actions>
@@ -36,7 +35,7 @@
           {{ fee.name }}
           <v-spacer></v-spacer>
           {{
-            $t(`models.location.currencies.${fee.currency_code}.symbol`) +
+            'AED' +
             fee.amount.toLocaleString()
           }}
         </v-card-actions>
@@ -48,7 +47,7 @@
           {{ fee.name }}
           <v-spacer></v-spacer>
           {{
-            $t(`models.location.currencies.${fee.currency_code}.symbol`) +
+            'AED' +
             fee.amount.toLocaleString()
           }}
         </v-card-actions>
@@ -57,7 +56,7 @@
           <span class="title"> Total </span>
           <v-spacer></v-spacer>
           {{
-            $t(`models.location.currencies.${location.currency_code}.symbol`) +
+            'AED' +
             totalPrice.toLocaleString()
           }}
         </v-card-actions>
@@ -172,7 +171,7 @@ export default {
           id: "PROCESSING_FEES",
           name: "Processing Fees",
           amount: 250,
-          currency_code: "USD",
+          currency_code: "AED",
           type: "fixed", // type may be fixed of percentage
         },
       ];

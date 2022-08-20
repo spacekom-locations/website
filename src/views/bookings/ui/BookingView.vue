@@ -128,11 +128,7 @@
                   <v-row class="py-0 my-2">
                     <v-col class="py-0 my-0"> Price per hour </v-col>
                     <v-col class="py-0 my-0">
-                      {{
-                        $t(
-                          `models.location.currencies.${location.currency_code}.symbol`
-                        )
-                      }}{{
+                      AED{{
                         getRangeFromName(bookingData.crew_size).prices[
                           bookingData.activity
                         ]
@@ -147,9 +143,7 @@
                     <v-col class="py-0 my-0"> {{ addonFee.name }} </v-col>
                     <v-col class="py-0 my-0">
                       {{
-                        $t(
-                          `models.location.currencies.${addonFee.currency_code}.symbol`
-                        ) + addonFee.amount.toLocaleString()
+                        'AED' + addonFee.amount.toLocaleString()
                       }}
                     </v-col>
                   </v-row>
@@ -161,9 +155,7 @@
                     <v-col class="py-0 my-0"> {{ customFee.name }} </v-col>
                     <v-col class="py-0 my-0">
                       {{
-                        $t(
-                          `models.location.currencies.${customFee.currency_code}.symbol`
-                        ) + customFee.amount.toLocaleString()
+                        'AED' + customFee.amount.toLocaleString()
                       }}
                     </v-col>
                   </v-row>
@@ -175,9 +167,7 @@
                     <v-col class="py-0 my-0"> {{ systemFee.name }} </v-col>
                     <v-col class="py-0 my-0">
                       {{
-                        $t(
-                          `models.location.currencies.${systemFee.currency_code}.symbol`
-                        ) + systemFee.amount.toLocaleString()
+                        'AED' + systemFee.amount.toLocaleString()
                       }}
                     </v-col>
                   </v-row>
@@ -192,9 +182,7 @@
                   </v-col>
                   <v-col class="py-0 my-0">
                     {{
-                      $t(
-                        `models.location.currencies.${location.currency_code}.symbol`
-                      ) + (totalPrice - totalSystemFees).toLocaleString()
+                      'AED' + (totalPrice - totalSystemFees).toLocaleString()
                     }}
                   </v-col>
                 </v-row>
@@ -204,9 +192,7 @@
                   </v-col>
                   <v-col class="py-0 my-0">
                     {{
-                      $t(
-                        `models.location.currencies.${location.currency_code}.symbol`
-                      ) +
+                      'AED' +
                       (
                         totalPrice -
                         totalSystemFees -
@@ -407,7 +393,7 @@ export default {
           id: "PROCESSING_FEES",
           name: "Processing Fees",
           amount: 250,
-          currency_code: "USD",
+          currency_code: "AED",
           type: "fixed", // type may be fixed of percentage
         },
       ];

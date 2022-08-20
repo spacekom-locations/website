@@ -89,9 +89,7 @@
                       type="number"
                       v-model="range.prices[price.id]"
                       :suffix="`/hr`"
-                      :prefix="`${getCurrencySymbol(
-                        location.currency_code
-                      )} : `"
+                      :prefix="`AED : `"
                       :messages="`Your net payout: ${
                         range.prices[price.id] -
                         (15 * range.prices[price.id]) / 100
@@ -149,12 +147,14 @@ export default {
   data: () => ({
     validHours: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
     validCurrencies: [
-      { code: "SDG", text: "Sudan Pound", symbol: "ج.س" },
-      { code: "USD", text: "United State Dollar", symbol: "$" },
-      { code: "EUR", text: "Euro", symbol: "€" },
-      { code: "GBP", text: "Pound Sterling", symbol: "£" },
-      { code: "EAD", text: "United Arab Emirates Dirham", symbol: "د.إ" },
-      { code: "SR", text: "Saudi Riyal", symbol: "﷼" },
+      // { code: "SDG", text: "Sudan Pound", symbol: "ج.س" },
+      // { code: "USD", text: "United State Dollar", symbol: "$" },
+      // { code: "EUR", text: "Euro", symbol: "€" },
+      // { code: "GBP", text: "Pound Sterling", symbol: "£" },
+      // { code: "AED", text: "United Arab Emirates Dirham", symbol: "د.إ" },
+      // { code: "SR", text: "Saudi Riyal", symbol: "﷼" },
+
+      { code: "AED", text: "United Arab Emirates Dirham", symbol: "AED" },
     ],
     validPrices: [
       {
@@ -195,7 +195,7 @@ export default {
   },
   methods: {
     getCurrencySymbol(currencyCode) {
-      if(!currencyCode) return '#';
+      if (!currencyCode) return "#";
       currencyCode = currencyCode.trim().toUpperCase();
       for (let currency of this.validCurrencies) {
         if (currency.code.trim().toUpperCase() == currencyCode) {
@@ -268,6 +268,8 @@ export default {
   },
   created() {
     this.location = this.value;
+    //always set as AED
+    this.location.currency_code = "AED";
   },
 };
 </script>

@@ -38,6 +38,7 @@
             :ripple="false"
             color="success"
             readonly
+            @click="toggleLocationType(type, kindObject.id)"
           />
         </v-card-title>
       </v-card>

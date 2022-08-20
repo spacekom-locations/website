@@ -125,7 +125,7 @@
                         <span class="subtitle-2">
                           From
                           {{ location.pricing.ranges[0].prices.MEETING }}
-                          {{ location.currency_code }}
+                          AED
                         </span>
                       </div>
                       <div>

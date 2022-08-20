@@ -30,8 +30,7 @@
             :color="isAddOnUsed(addon.id) ? 'secondary white--text' : ''"
           >
             <v-card-title class="px-0 py-1 mx-4">
-              {{ $t(`models.location.currencies.${addon.currency_code}.symbol`)
-              }}{{ addon.amount }}
+              AED {{ addon.amount }}
             </v-card-title>
           </v-card>
         </div>
@@ -130,7 +129,7 @@ export default {
         {
           id: "DAMAGE_PROTECTION",
           amount: 99,
-          currency_code: "USD",
+          currency_code: "AED",
           name: "Damage Protection",
           shortDescription:
             "By declining this coverage you agree to pay for all damages.",
@@ -141,7 +140,7 @@ export default {
         {
           id: "SITE_REPS",
           amount: 1500,
-          currency_code: "USD",
+          currency_code: "AED",
           name: "Site Reps",
           shortDescription:
             "By declining this coverage you agree to pay for all damages.",

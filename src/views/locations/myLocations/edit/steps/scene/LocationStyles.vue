@@ -30,6 +30,7 @@
               :ripple="false"
               color="success"
               readonly
+              @click="toggleLocationStyle(style.id)"
             />
           </v-card-title>
         </v-card>

@@ -217,7 +217,7 @@ export default {
           id: "PROCESSING_FEES",
           name: "Processing Fees",
           amount: 250,
-          currency_code: "USD",
+          currency_code: "AED",
           type: "fixed", // type may be fixed of percentage
         },
       ];

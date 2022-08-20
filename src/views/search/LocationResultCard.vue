@@ -22,9 +22,7 @@
           {{ location.title ? location.title : "unTitled" }}
         </p>
         <div>
-          {{
-            $t(`models.location.currencies.${location.currency_code}.symbol`)
-          }}
+          AED
           {{ location.pricing.ranges[0].prices.EVENT }} /hr
           <span class="mx-2">.</span>
           <v-rating
