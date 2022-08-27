@@ -61,6 +61,16 @@ Vue.filter('timeFormat', function(value) {
   }
 });
 
+
+import GAuth from 'vue-google-oauth2'
+const gauthOption = {
+  clientId: '217113381776-0jsnpdppf4fi81slvi05fv9cmi44qup1.apps.googleusercontent.com',
+  scope: 'profile email',
+  prompt: 'select_account'
+}
+
+Vue.use(GAuth, gauthOption)
+
 const vm = new Vue({
   router,
   store,
